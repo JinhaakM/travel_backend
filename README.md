@@ -9,23 +9,21 @@
 
 <br><br>
 
-<h2>시큐리티에 관련된 코드</h2>
+<h2>로그인하지 않은 사용자는 시큐리티에 의해 내 정보 페이지로 넘어갈 수 없다</h2>
 
-![시큐리티1](https://github.com/JinhaakM/travel_backend/assets/167280525/d7edd049-4cf3-448b-a843-3460bde426ac)
-
-<br><br>
-
-<h2>웹소켓 채팅 관련된 코드</h2>
-
-![채팅1](https://github.com/JinhaakM/travel_backend/assets/167280525/9fee10f3-bde2-4bd2-b61e-3cf9fe56cf05)
+![권한](https://github.com/JinhaakM/travel_backend/assets/167280525/35380e0f-9933-4792-bf82-b31123e252d1)
 
 <br><br>
 
-![채팅2](https://github.com/JinhaakM/travel_backend/assets/167280525/f8c408de-d8ed-4b8e-a490-db4b8816aada)
+<h2>관리자와 실시간으로 채팅을 주고 받을 수 있다</h2>
+
+![채팅](https://github.com/JinhaakM/travel_backend/assets/167280525/90a5cd9d-d06a-4b21-8851-ed325ed8523b)
 
 <br><br>
 
-![compare](https://github.com/JinhaakM/travel_backend/assets/167280525/300116d4-af65-41e1-b63d-86fb58e7390b)
+
+
+
 
 
 
