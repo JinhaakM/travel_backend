@@ -4,7 +4,7 @@
 #웹소켓을 이용해 관리자와 유저의 1대1 채팅<br>
 <br>
 <h2>Welcome</h2>
-![배경](https://github.com/JinhaakM/travel_backend/assets/167280525/dab78bec-3b81-4262-a768-ce34bfc9fcf5)<br><br>
+![배경](https://github.com/JinhaakM/travel_backend/assets/167280525/dab78bec-3b81-4262-a768-ce34bfc9fcf5)
 
 
 
