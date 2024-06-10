@@ -1,0 +1,28 @@
+package net.daum;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+//@SpringBootTest
+//class TravelApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
+
+@SpringBootTest
+public class TravelApplicationTests {
+
+    @Autowired
+    private SampleService sampleService;
+
+    @Test
+    public void testAdd() {
+        int result = sampleService.add(3, 4);
+        Assertions.assertEquals(7, result);
+    }
+}

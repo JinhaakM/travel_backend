@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+/* member_join.jsp ui */
+#Join_wrap{
+	width:590px; height:600px; border:1px solid skyblue;
+	box-shadow:15px 15px 15px #ccc;
+	margin-left:auto; margin-right:auto;
+	margin-top:60px; border-radius:15px;
+}
+#Join_wrap .Join_title{
+    margin:27px 0 0 180px; width:100px; font-size:19px;
+    background:#4174d9; border-radius:15px; text-align:center;
+    padding:3px;	
+}
+#Join_t{
+	border-spacing:10px;
+	margin:25px 0 0 35px;
+}
+
+#Join_t th{
+	background:#4174d9; border-radius:15px; font-size:14px;
+}
+#Join_menu{
+	margin:30px 0 0 190px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,14 @@
+package net.daum.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import net.daum.vo.ChatVO;
+import net.daum.vo.MessageVO;
+
+public interface MessageRepository extends JpaRepository<MessageVO, Long> {
+
+	@Query("insert into m.messageText from MessageVO m where m.chatVO.chatNo=?1")
+	ChatVO setMessage(String chatNo, String messageText);
+	
+}

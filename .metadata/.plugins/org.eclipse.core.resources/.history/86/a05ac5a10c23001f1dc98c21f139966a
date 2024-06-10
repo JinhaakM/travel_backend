@@ -1,0 +1,9 @@
+package net.daum.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import net.daum.vo.MessageVO;
+
+public interface MessageRepository extends JpaRepository<MessageVO, Long> {
+
+}

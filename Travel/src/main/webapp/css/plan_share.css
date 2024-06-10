@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/*plan_share.jsp ui*/
+ @media screen and (max-width: 600px) {
+  .main{}
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background-image: url("../images/bluesky.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main{ 
+   opacity:0.3;
+}
+
+.post{
+   position: absolute;   display: flex;
+   flex-direction:row;
+   width : 1600px; height:430px;
+   border:5px solid white;
+   justify-content: space-around;
+   background-color: transparent;
+   border-radius: 10px; margin-left: 220px; 
+    top: 150px; color:#fff;  
+    overflow:scroll; 
+    overflow-x:hidden;
+    display: flex;
+    justify-content: space-between;
+   gap: 10px; padding: 10px;
+   
+}
+
+.part1 img{
+      position:absolute; width:300px; height:400px;
+      border:3px solid white;
+      background-color:transparent;
+   border-radius: 10px; margin-left : 30px; 
+   
+}
+
+.part2 img{
+    width:550px; height:600px;
+      border:3px solid white;
+      background-color:transparent;
+   border-radius: 10px; margin-left : 320px;margin-bottom:10px;
+
+}
+
+.part3 img{
+   width:550px; height:600px;
+      border:3px solid white;
+      background-color:transparent;
+   border-radius: 10px;  margin-right: 30px; margin-bottom:10px;
+
+}
+
+.heart{
+    width:120px; height:300px; background-color:pink;
+    position:fixed; top:160px; left:30px; 
+}
+
+.repeat{
+   position: absolute;   display: flex;
+   flex-direction:row;
+   width : 1600px; height:200px;
+   border:5px solid white;
+   justify-content: space-around;
+   background-color: transparent;
+   border-radius: 10px; margin-left: 220px; 
+    top: 650px; color:#fff;  
+    overflow:scroll; 
+    overflow-x:hidden;
+    display: flex;
+}

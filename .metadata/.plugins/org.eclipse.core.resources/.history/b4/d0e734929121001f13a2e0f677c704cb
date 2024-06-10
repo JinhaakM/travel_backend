@@ -1,0 +1,50 @@
+package net.daum.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import net.daum.dao.MemberDAO;
+import net.daum.vo.MemberVO;
+
+@Service
+public class MemberServiceImpl implements MemberService {
+
+	@Autowired
+	private MemberDAO memberDao;
+
+	@Override
+	public void insertMember(MemberVO m) {
+		this.memberDao.insertMember(m);
+	}
+
+	@Override
+	public MemberVO loginCheck(String member_id) {
+		return this.memberDao.loginCheck(member_id);
+	}
+
+	@Override
+	public MemberVO idCheck(String id) {
+		return this.memberDao.idCheck(id);
+	}
+
+	@Override
+	public MemberVO idAndMailCheck(String member_id, String mail_id, String mail_domain) {
+		return this.memberDao.idAndMailCheck(member_id, mail_id, mail_domain);
+	}
+
+	@Override
+	public void updatePwd(MemberVO m) {
+		this.memberDao.updatePwd(m);
+	}
+
+	@Override
+	public void update_Edit(MemberVO m) {
+		this.memberDao.update_Edit(m);
+	}
+
+	@Override
+	public void deleteUser(String userId) {
+		this.memberDao.deldeteUser(userId);
+	}
+
+}

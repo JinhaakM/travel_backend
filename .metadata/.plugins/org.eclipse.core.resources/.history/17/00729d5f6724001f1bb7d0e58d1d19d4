@@ -1,0 +1,116 @@
+package net.daum.controller;
+
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import net.daum.service.MemberService;
+import net.daum.vo.ChatVO;
+import net.daum.vo.MessageVO;
+
+
+
+@RequestMapping("/admin/*")
+@Controller
+public class AdminController {
+
+	@Autowired
+	private MemberService memberService;
+	
+	
+	@GetMapping("/homepage")
+	public ModelAndView homepage() {
+		
+		List<String> users=new ArrayList<>();
+		users=this.memberService.getAllUserId();		
+		
+		ModelAndView home=new ModelAndView();
+		home.setViewName("admin/adminHomepage");
+		home.addObject("users",users);
+		return home;
+	}
+	
+	
+	@GetMapping("/chat")
+    public String showChat(@RequestParam("user") String user, Model model) {
+
+		long chatNumber=this.memberService.getChatNumber(user);
+		//유저의 채팅넘버
+		//관리자는 1번 
+		
+		//유저는 db에 메시지가 저장될 때 유저: 가 붙는다.
+		//관리자는 db에 메시지가 저장될 때 관리자: 가 붙는다.
+		List<MessageVO> allMessage=new ArrayList<>();
+		List<String> userMessage=new ArrayList<>();
+		List<String> adminMessage=new ArrayList<>();
+
+		allMessage=this.memberService.getAllMessage(chatNumber);
+		//채팅방에 속하는 모든 메시지는 서버에서 가져오기 성공함.
+		//System.out.println(allMessage.get(4).getMessageText()); 
+		//메시지 하나를 출력하고 싶을 때.
+		
+		for(int i=0; i<allMessage.size(); i++) {
+			if(allMessage.get(i).getMessageText().startsWith("관리자")) {
+				String msg=allMessage.get(i).getMessageText().substring(5);
+				adminMessage.add(msg);
+			}else {
+				String msg2=allMessage.get(i).getMessageText().substring(5);
+				userMessage.add(msg2);
+			}
+		}
+		//받은 메시지를 전부 뽑아서(근데 뽑을 때 관리자가 보낸 거랑 유저가 보낸 거랑 나누어서) 페이지로 넘겨야 함.
+		// + 시간대 생각하기. 
+		// 그래서 뷰페이지에 잘 전달이 되어서 나갔다 들어와도 저장이 잘 되는지 확인하기.
+	
+		
+        model.addAttribute("user", user);
+        model.addAttribute("chatNumber", chatNumber);
+        model.addAttribute("adminMessage",adminMessage);
+        model.addAttribute("userMessage",userMessage);
+        
+        return "admin/admin_chat";
+    }
+    
+	
+	
+	@PostMapping("/messageSend")
+	public ModelAndView messageSend(@RequestParam("chatNumber") String chatNo,
+									@RequestParam("chatting") String messageText,
+									HttpServletResponse response) throws Exception{
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		
+//		System.out.println(chatNo);
+//		System.out.println(messageText);
+		
+		ModelAndView m=new ModelAndView();
+		int result=1;
+		
+		ChatVO c=new ChatVO();
+		c.setChatNo(Long.parseLong(chatNo));
+		MessageVO msg=new MessageVO();
+		msg.setMessageText("관리자: "+messageText);
+		msg.setChatVO(c);
+		
+		this.memberService.setMessage(msg);
+		
+		out.println(result);
+		
+		
+		return null;
+	}
+
+	
+}

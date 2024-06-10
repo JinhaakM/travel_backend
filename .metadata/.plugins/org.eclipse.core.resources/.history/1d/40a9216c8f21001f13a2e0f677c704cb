@@ -1,0 +1,32 @@
+package net.daum.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import net.daum.vo.MemberVO;
+
+
+
+@Controller
+public class ChatController {
+	
+	
+	@RequestMapping("/chat")
+	public ModelAndView chat(@AuthenticationPrincipal UserDetails userDetails) {
+	
+		String username=userDetails.getUsername();
+		
+		MemberVO m= this.chatService.idCheck(username);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("jsp/chat");
+		return mv;
+	}
+	
+
+}

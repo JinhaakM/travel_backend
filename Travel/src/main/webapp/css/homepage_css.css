@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* 동영상 컨테이너 스타일 설정 */
+.video-container {
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
+
+/* 동영상 스타일 설정 */
+.video-container video {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+  
+/* 내용 스타일 설정 */
+.content {
+	position: relative;
+	z-index: 2; 
+	margin-bottom: 800px; 
+}
+
+/* 검색창 및 다른 UI 요소 스타일 설정 */
+.search-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+/* 검색창 및 버튼 그룹 스타일 설정 */
+.search-container {
+	display: flex; 
+	justify-content: center; 
+	position: relative; 
+	top: 300px; 
+	left: 50%; 
+	transform: translate(-50%, -50%); 
+	width: 400px; 
+}
+
+/* 검색창 스타일 설정 */
+.search-bar {
+	padding: 15px;
+	font-size: 16px;
+	background-color: rgba(255, 255, 255, 0.5);
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	color: black;
+	flex: 1; 
+}
+
+/* 검색창에 마우스를 올렸을 때 배경색 변경 */
+.search-bar:hover {
+	background-color: #ccc; 
+	border-color: #4174d9;
+}
+
+/* 검색 버튼 스타일 설정 */
+.search-button {
+	padding: 15px;
+	border: none;
+	background-color: transparent;
+	border-radius: 5px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	text-shadow: 2px 2px 2px black;
+	position: absolute; 
+	right: 0; 
+	top: 50%; 
+	transform: translateY(-50%); 
+}

@@ -1,0 +1,71 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="/css/admin_homepage.css">
+<meta name="_csrf_header" content="${_csrf.headerName}">
+<meta name="_csrf" content="${_csrf.token}">
+<meta charset="UTF-8">
+<title>관리자 페이지</title>
+</head>
+
+<body>
+    <h1>관리자 페이지</h1>
+    
+    <div id="user-list-container">
+        <ul id="user-list">
+            <!-- 유저 목록이 여기에 표시됩니다 -->
+        </ul>
+    </div>
+    
+    <div id="pagination">
+        <button id="prev">이전</button>
+        <span id="page-info"></span>
+        <button id="next">다음</button>
+    </div>
+    
+<script>
+$(document).ready(function() {
+    // 서버에서 전달된 유저 목록을 JSON 형식으로 변환합니다.
+    var users = ${fn:escapeXml(users)};
+    var pageSize = 10; // 한 페이지에 보여줄 유저 수
+    var currentPage = 1;
+    var totalPages = Math.ceil(users.length / pageSize);
+
+    function showPage(page) {
+        var startIndex = (page - 1) * pageSize;
+        var endIndex = page * pageSize;
+        var paginatedUsers = users.slice(startIndex, endIndex);
+        
+        $('#user-list').empty();
+        paginatedUsers.forEach(function(user) {
+            $('#user-list').append('<li>' + user + '</li>');
+        });
+        
+        $('#page-info').text('Page ' + page + ' of ' + totalPages);
+    }
+    
+    $('#prev').click(function() {
+        if (currentPage > 1) {
+            currentPage--;
+            showPage(currentPage);
+        }
+    });
+    
+    $('#next').click(function() {
+        if (currentPage < totalPages) {
+            currentPage++;
+            showPage(currentPage);
+        }
+    });
+    
+    // 첫 페이지를 보여줍니다.
+    showPage(currentPage);
+});
+</script>
+
+<script src="/js/admin_homepage.js"></script>    
+</body>
+</html>

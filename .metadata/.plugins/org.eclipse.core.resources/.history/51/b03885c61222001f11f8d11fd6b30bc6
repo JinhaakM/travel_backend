@@ -1,0 +1,53 @@
+package net.daum.vo;
+
+import java.sql.Timestamp;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name="chat")
+@SequenceGenerator(
+		name="chat_no_seq_gename",//시퀀스 제너레이터 이름
+		sequenceName="chat_no_seq",//시퀀스 이름
+		initialValue = 1,//시퀀스 시작값
+		allocationSize = 1//1씩 증가
+		)
+public class ChatVO {
+	
+	@Id
+    @GeneratedValue(
+            strategy=GenerationType.SEQUENCE,
+            generator="chat_no_seq_gename"
+            )
+    private Long chatNo;
+    
+    private String message;
+    
+    @CreationTimestamp
+    private Timestamp chat_when;
+    
+    @OneToOne
+    @JoinColumn(name = "chat_member", referencedColumnName = "member_id")
+    private MemberVO member;
+
+}
+	

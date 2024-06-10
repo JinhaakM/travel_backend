@@ -1,0 +1,200 @@
+/* 기본 스타일 초기화 */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #87CEEB, #ADD8E6); 
+  position: relative;
+  min-height: 100vh;
+}
+/* 제목 스타일 */
+h2 {
+  color: #333; 
+  text-align: center;
+  margin-top: 20px; 
+  margin-bottom: 50px;
+}
+
+/* 게시물 검색창 스타일 */
+.post-container {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.search-container {
+  text-align: center;
+  padding: 10px;
+}
+
+#search-input {
+  width: calc(100% - 100px);
+  height: 40px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+#search-button {
+  padding: 8px 16px;
+  background-color: #4174d9; 
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+#search-button:hover {
+  background-color: #3366cc; 
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+  display: flex;
+  flex-direction: column; 
+  width: 200px;
+  padding: 30px;
+  margin-bottom: 150px;
+  margin-left:20px;
+  background-color: #F0FFFF; 
+  border-radius:20px;
+  }
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+	
+  margin-bottom: 40px; 
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #F0FFFF; 
+}
+
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  transition: color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: #4174d9;
+}
+
+/* 팝업 스타일 */
+.container3 {
+  position: relative;
+  margin-left: 20px;
+}
+
+.popup {
+  width: 300px;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 3px solid black;
+  padding: 20px;
+  z-index: 999;
+  display: none;
+  border-radius:20px;
+}
+
+
+.popup.active {
+  display: block;
+}
+
+#openPopup,
+#closePopup {
+  background-color: #4174d9;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px; 
+}
+
+#openPopup:hover,
+#closePopup:hover {
+  background-color: #3366cc; 
+}
+
+/* 게시글 스타일 */
+.post,
+.instagram-post {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+
+.post .profile,
+.instagram-post .profile {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.post-content,
+.instagram-post .post-content {
+  padding: 10px;
+}
+
+.post-content p,
+.instagram-post .post-content p {
+  margin-bottom: 10px;
+}
+
+.post-content img,
+.instagram-post .post-content img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* 인스타그램 스타일의 게시물 폼 */
+.instagram-post .interactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.instagram-post .interactions .like-button,
+.instagram-post .interactions .comment-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.instagram-post .interactions .like-button:hover,
+.instagram-post .interactions .comment-button:hover {
+  color: #4174d9;
+}
