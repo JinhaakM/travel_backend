@@ -12,20 +12,25 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.server.Session;
-import org.springframework.boot.web.servlet.server.Session.Cookie;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.daum.controller.AdminController.MessageComparator;
 import net.daum.service.MemberService;
 import net.daum.vo.ChatVO;
 import net.daum.vo.MemberVO;
@@ -343,6 +348,69 @@ public class MainController {
 		
 		return null;
 	}
+	
+	
+	@GetMapping("/Wallet")
+	public ModelAndView Wallet(@AuthenticationPrincipal UserDetails userDetails) {
+		
+		String username=userDetails.getUsername();
+		MemberVO m= this.memberService.idCheck(username);
+		
+		String mail=m.getMail_id()+"@"+m.getMail_domain();
+		String name=m.getMember_name();
+		String phone=m.getMember_phone01()+"-"+m.getMember_phone02()+"-"+m.getMember_phone03();
+		String addr=m.getSample6_address()+"/"+m.getSample6_detailAddress()+"/"+m.getSample6_extraAddress();
+		String post=m.getSample6_postcode();
+		
+		ModelAndView home=new ModelAndView();
+		home.setViewName("jsp/wallet");
+		home.addObject("mail",mail);
+		home.addObject("name",name);
+		home.addObject("phone",phone);
+		home.addObject("addr",addr);
+		home.addObject("post",post);
+
+		return home;
+	}
+	
+	
+	@GetMapping("successPay")
+	public ModelAndView successPay(@AuthenticationPrincipal UserDetails userDetails,
+			HttpServletRequest request) {
+		
+		String username=userDetails.getUsername();
+		MemberVO m= this.memberService.idCheck(username);
+		m.setRole("PAIDUSER");
+		this.memberService.update_Edit(m);
+		
+//		HttpSession session = request.getSession(); // 세션 객체 생성
+//        session.setAttribute("id", m.getMember_id());
+//        session.setAttribute("name", m.getMember_name());        
+//        session.setAttribute("auth", "ROLE_" + m.getRole());
+		//위 방법으론 권한 업데이트가 되지 않음.
+		
+        //System.out.println(m.getMember_id()+m.getMember_name()+m.getRole());
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
+        updatedAuthorities.remove(new SimpleGrantedAuthority("ROLE_NOPAIDUSER"));
+        updatedAuthorities.add(new SimpleGrantedAuthority("ROLE_PAIDUSER"));
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
+        //결제 시 권한을 업데이트해서 접근할 수 없는 페이지에 접근을 가능하게 해야해서, 현재 접속중인 유저 정보를 업데이트.
+		ModelAndView home=new ModelAndView();
+		home.setViewName("jsp/homepage");
+		return home;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

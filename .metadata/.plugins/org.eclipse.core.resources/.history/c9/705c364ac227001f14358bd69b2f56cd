@@ -1,0 +1,84 @@
+<%@ page contentType="text/html; charset=UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+      <!-- 포트원 SDK 라이브러리 추가 -->
+      <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
+      
+      <script>
+   // 객체 초기화
+        var IMP = window.IMP;
+        IMP.init('imp87501644');
+
+        function requestPay() {
+          // 결제창 호출      
+        	IMP.request_pay({ 
+        		
+        		pg : 'kakaopay',
+        	    pay_method : 'card', //생략 가능
+        	    merchant_uid: "order_no_00025", // 상점에서 관리하는 주문 번호 계속 바뀌어야 함.
+        	    name : '주문명:결제테스트',
+        	    amount : 9900,
+        	    buyer_email : 'iamport@siot.do',
+        	    buyer_name : '구매자이름',
+        	    buyer_tel : '010-1234-5678',
+        	    buyer_addr : '서울특별시 강남구 삼성동',
+        	    buyer_postcode : '123-456'
+        		
+        	},
+        	async requestPayResponse => {
+        	    const { success, error_msg } = requestPayResponse;
+        	    if (!success) {
+        	      alert(`결제에 실패하였습니다. 에러 내용: ${error_msg}`);
+        	      return;
+        	    } else {
+        	      alert(`결제에 성공하였습니다.`);
+        	    }
+        	  }
+        	);
+        
+        
+        app.use(bodyParser.json());
+        app.post("/payments/complete", async (req, res) => {
+          try {
+            // req의 body에서 imp_uid, merchant_uid 추출
+            const { imp_uid, merchant_uid } = req.body;
+            ...
+            // 액세스 토큰(access token) 발급 받기
+            const getToken = await axios({
+              url: "https://api.iamport.kr/users/getToken",
+              method: "post", // POST method
+              headers: { "Content-Type": "application/json" },
+              data: {
+                imp_key: "imp_apikey", // REST API 키
+                imp_secret: "ekKoeW8RyKuT0zgaZsUtXXTLQ4AhPFW3ZGseDA6bkA5lamv9OqDMnxyeB9wqOsuO9W3Mx9YSJ4dTqJ3f" // REST API Secret
+              }
+            });
+        const { access_token } = getToken.data; // 인증 토큰
+            ...
+        // imp_uid로 포트원 서버에서 결제 정보 조회
+        const getPaymentData = await axios({
+          // imp_uid 전달
+          url: `https://api.iamport.kr/payments/${imp_uid}`,
+          // GET method
+          method: "get",
+          // 인증 토큰 Authorization header에 추가
+          headers: { "Authorization": access_token }
+        });
+        const paymentData = getPaymentData.data.response; // 조회한 결제 정보
+            ...
+          } catch (e) {
+          res.status(400).send(e);
+        }
+        });
+        }
+        
+      </script>
+      <meta charset="UTF-8" />
+      <title>Sample Payment</title>
+    </head>
+    <body>
+      <!-- 결제하기 버튼 생성 -->
+      <button onclick="requestPay()">결제하기</button>
+    </body>
+  </html>

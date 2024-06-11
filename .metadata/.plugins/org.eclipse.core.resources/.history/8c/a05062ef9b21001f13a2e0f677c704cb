@@ -1,9 +1,0 @@
-package net.daum.dao;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-import net.daum.vo.ChatVO;
-
-public interface ChatRepository extends JpaRepository<ChatVO, Long> {
-
-}

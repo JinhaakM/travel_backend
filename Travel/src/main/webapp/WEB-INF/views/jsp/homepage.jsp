@@ -8,6 +8,8 @@
 
 <body>
 <jsp:include page="../include/header.jsp" />
+
+
 <div class="wrap">
 	<div class="video-container">
 		<video autoplay loop muted>

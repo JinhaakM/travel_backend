@@ -64,6 +64,18 @@ dependencies {//gradle 방식에서 의존성 주입부분이다.
     JUnit 테스트 실행시 위 에러가 발생하는 이유는 JUnit 5.9.3에서는  org.junit.platform:junit-platform-engine:1.9.3 이 없어서이다. 
     그래서 아래것 의존성을 추가하면 에러가 발생하지 않는다. */
     testImplementation 'org.junit.platform:junit-platform-launcher:1.9.3'
+
+
+
+implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+
+
 }
 tasks.named('test') {
 	useJUnitPlatform()
