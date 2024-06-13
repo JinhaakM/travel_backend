@@ -48,4 +48,5 @@ public class MessageVO {
 	
 	@CreationTimestamp
 	private Timestamp message_time;
+	
 }

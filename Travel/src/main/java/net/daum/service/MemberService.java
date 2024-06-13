@@ -20,10 +20,7 @@ public interface MemberService {
 	void update_Edit(MemberVO m);
 	void deleteUser(String userId);
 	long getChatNumber(String member_id);
-
 	List<String> getAllUserId();
-
 	void setMessage(MessageVO msg);
-
 	List<MessageVO> getAllMessage(long chatNumber);
 }

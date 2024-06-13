@@ -66,12 +66,12 @@ dependencies {//gradle 방식에서 의존성 주입부분이다.
     testImplementation 'org.junit.platform:junit-platform-launcher:1.9.3'
 
 
-
 implementation 'com.github.iamport:iamport-rest-client-java:0.2.21'
 allprojects {
-    repositories {
-        maven { url 'https://jitpack.io' }
-    }
+	repositories {
+		mavenCentral()
+		maven { url 'https://jitpack.io' }
+	}
 }
 
 

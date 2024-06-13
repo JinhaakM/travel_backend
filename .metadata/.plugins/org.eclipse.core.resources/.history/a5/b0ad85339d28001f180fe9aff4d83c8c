@@ -1,0 +1,28 @@
+package net.daum.vo;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="payment")
+public class PaymentInfoVO {
+    private String imp_Uid;
+    private String merchant_Uid;
+
+    // getters and setters
+    public String getImp_Uid() {
+        return imp_Uid;
+    }
+
+    public void setImpUid(String imp_Uid) {
+        this.imp_Uid = imp_Uid;
+    }
+
+    public String getMerchant_Uid() {
+        return merchant_Uid;
+    }
+
+    public void setMerchantUid(String merchant_Uid) {
+        this.merchant_Uid = merchant_Uid;
+    }
+}

@@ -1,0 +1,59 @@
+/**
+ * 
+ */
+// 객체 초기화
+var IMP = window.IMP;
+IMP.init("imp87501644");
+
+function requestPay() {
+  // 결제창 호출      
+  var random_uid = Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
+
+  IMP.request_pay(
+    {
+      // 파라미터 값 설정 
+      pg: "kakaopay.TC0ONETIME",
+      pay_method: "kakaopay",
+      merchant_uid: "IMP" + random_uid, // 상점 고유 주문번호. 계속 변경되어야 함.
+      name: "travel 구독",
+      amount: 9900,
+      buyer_email: $("#mail").val(),
+      buyer_name: $("#name").val(),
+      buyer_tel: $("#phone").val(),
+      buyer_addr: $("#addr").val(),
+      buyer_postcode: $("#post").val(),
+    },
+
+    function (rsp) {
+      // callback
+      if (rsp.success) {
+		alert(`결제 성공`+rsp.imp_uid);
+        var header = $("meta[name='_csrf_header']").attr('content');
+        var token = $("meta[name='_csrf']").attr('content');
+        // jQuery AJAX로 HTTP 요청
+        $.ajax({
+          url: "payment",
+          type: "POST",
+          contentType: "application/json",
+          beforeSend: function (xhr) {
+            xhr.setRequestHeader(header, token);
+          },
+          data: JSON.stringify({
+            imp_uid: rsp.imp_uid,
+            merchant_uid: rsp.merchant_uid
+          }),
+          success: function (data) {
+            // 서버 결제 API 성공시 로직
+            alert(`결제 성공`);
+            window.location.href = "/successPay"; // 이동할 페이지의 경로
+          },
+          error: function (xhr, status, error) {
+            alert(`결제에 실패하였습니다. 에러 내용: ${error}`);
+          }
+        });
+      } else {
+        alert(`결제에 실패하였습니다. 에러 내용: ${rsp.error_msg}`);
+      }
+    }
+  );
+}

@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="yourMsg"/>
+		<item key="selection" value="imp_uid"/>
 		<list key="findhistory">
+			<item value="imp_uid"/>
+			<item value="merchant_uid"/>
+			<item value="merchatn_uid"/>
 			<item value="yourMsg"/>
 			<item value="your"/>
 			<item value="update"/>

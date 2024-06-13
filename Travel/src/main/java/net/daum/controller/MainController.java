@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,11 +27,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.siot.IamportRestClient.IamportClient;
 
 import net.daum.service.MemberService;
 import net.daum.vo.ChatVO;
@@ -375,19 +377,20 @@ public class MainController {
 	
 	
 	@GetMapping("successPay")
-	public ModelAndView successPay(@AuthenticationPrincipal UserDetails userDetails,
-			HttpServletRequest request) {
+	public void successPay(@AuthenticationPrincipal UserDetails userDetails,
+			HttpServletRequest request,HttpServletResponse response) throws Exception{
 		
 		String username=userDetails.getUsername();
 		MemberVO m= this.memberService.idCheck(username);
 		m.setRole("PAIDUSER");
 		this.memberService.update_Edit(m);
 		
-//		HttpSession session = request.getSession(); // 세션 객체 생성
+//		  HttpSession session = request.getSession(); 
+// 		  세션 객체 생성
 //        session.setAttribute("id", m.getMember_id());
 //        session.setAttribute("name", m.getMember_name());        
 //        session.setAttribute("auth", "ROLE_" + m.getRole());
-		//위 방법으론 권한 업데이트가 되지 않음.
+//        위 방법으론 권한 업데이트가 되지 않음.
 		
         //System.out.println(m.getMember_id()+m.getMember_name()+m.getRole());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -398,24 +401,15 @@ public class MainController {
         Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(newAuth);
         //결제 시 권한을 업데이트해서 접근할 수 없는 페이지에 접근을 가능하게 해야해서, 현재 접속중인 유저 정보를 업데이트.
-		ModelAndView home=new ModelAndView();
-		home.setViewName("jsp/homepage");
-		return home;
+        
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out=response.getWriter();
+		out.println("<script>");
+		out.println("alert('결제가 완료됐습니다.');");
+		out.println("window.location.href = '/Add_schedule';");
+		out.println("</script>");
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//병합 전 시큐리티 접근 가능 여부 파악
 	@GetMapping("/Main")

@@ -1,0 +1,18 @@
+package net.daum.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.siot.IamportRestClient.IamportClient;
+
+@Service
+public class PaymentService {
+
+    private IamportClient api;
+
+    @Autowired
+    private PrePaymentRepository prePaymentRepo;
+    
+    public PaymentService() {
+        this.api = new IamportClient("REST API KEY", "REST API SECRET");
+    }
