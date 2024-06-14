@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.and()
             	.authorizeRequests()
                 .antMatchers("/Alert","/logout").access("hasRole('ADMIN') or hasRole('NOPAIDUSER') or hasRole('PAIDUSER')")
-                .antMatchers("/Add_schedule").hasRole("PAIDUSER")
+                .antMatchers("/addschedule").hasRole("PAIDUSER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()  
             .formLogin()

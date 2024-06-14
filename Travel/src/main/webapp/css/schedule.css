@@ -3,6 +3,7 @@ body {
 	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
+	/*background-image: url("../images/background_img_3.jpg");*/
 	background-color: black;
 	background-size: cover;
 	background-position: center;
@@ -14,10 +15,10 @@ body {
 .button_box {
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around; 
-	align-items: center; 
-	justify-content: space-around; 
-	background-color: rgba(0, 0, 0, 0.5); 
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	align-items: center; /* 버튼을 수평 방향으로 가운데 정렬 */
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	background-color: rgba(0, 0, 0, 0.5); /* 50%의 투명도 */
 	width: 110px;
 	background-color: transparent;
 	border-radius: 10px;
@@ -33,10 +34,10 @@ body {
 	color: white;
 	background-color: #4174d9;
 	text-align: center;
-	margin-bottom: 5px; 
+	margin-bottom: 5px; /* 버튼 아래쪽에 간격 추가 */
 	cursor: pointer;
 	text-decoration: none;
-	line-height: 50px; 
+	line-height: 50px; /* 버튼의 높이와 동일하게 설정 */
 	border: 2px solid #4174d9;
 	border-radius: 10px;
 }
@@ -49,12 +50,12 @@ body {
 .container2 {
 	width: 1400px;
 	height: 650px;
-	border-top: 3px solid #4174d9; 
-	border-bottom: 3px solid #4174d9; 
+	border-top: 3px solid #4174d9; /* 윗부분 선의 두께와 색상 설정 */
+	border-bottom: 3px solid #4174d9; /* 아래쪽 선의 두께와 색상 설정 */
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center; 
+	align-items: center; /* 필요에 따라 수정하세요 */
 	margin-top: -330px;
 	margin-left: 300px;
 	margin-bottom: 40px;
@@ -62,7 +63,7 @@ body {
 
 .btn_plan {
 	display: inline-block;
-	background-color: rgba(0, 0, 0, 0); 
+	background-color: rgba(0, 0, 0, 0); /* 0%의 투명도 */
 	color: #4174d9;
 	border: none;
 	cursor: pointer;
@@ -86,9 +87,9 @@ body {
 }
 
 .search_input {
-	position: absolute; 
-	top: 230px; 
-	left: -170px; 
+	position: absolute; /* 절대 위치 설정 */
+	top: 230px; /* 부모 요소의 중간 위치 */
+	left: -170px; /* 부모 요소의 가운데 위치 */
 	background-color: rgba(255, 255, 255, 0.9);
 	outline: none;
 	border: none;
@@ -127,49 +128,50 @@ body {
 }
 
 .search_input::placeholder {
-	color: #4174d9;; 
+	color: #4174d9;; /* 원하는 색상으로 지정 */
 }
 
 .list {
-	display: hidden; 
-	list-style-type: none; 
-	padding: 0; 
-	margin: 0; 
-	background-color: white; 
+	display: hidden; /* 리스트를 기본적으로 숨깁니다. */
+	list-style-type: none; /* 리스트 스타일 제거 */
+	padding: 0; /* 리스트의 패딩 제거 */
+	margin: 0; /* 리스트의 마진 제거 */
+	background-color: white; /* 배경색 지정 */
 	opacity: 0;
-	border-bottom-left-radius: 5px; 
+	border-bottom-left-radius: 5px; /* 테두리 반경 설정 */
 	border-bottom-right-radius: 5px;
-	width: 350px; 
+	width: 350px; /* 리스트 너비 설정 */
 	max-height: 300px;
-	overflow-y: auto; 
-	position: absolute; 
-	top: 470px; 
-	left: 1005px; 
+	overflow-y: auto; /* 세로 스크롤 활성화 */
+	position: absolute; /* 절대 위치 설정 */
+	top: 470px; /* 부모 요소의 중간 위치 */
+	left: 1005px; /* 부모 요소의 가운데 위치 */
 	transform: translate(-50%, -50%) scaleY(0);
-	transform-origin: center top; 
-	transition: transform 0.7s ease; 
+	/* 세로로는 아직 보이지 않도록 scaleX(0)을 적용합니다. */
+	transform-origin: center top; /* 변환의 기준점을 가운데 위로 설정합니다. */
+	transition: transform 0.7s ease; /* 변환에 대한 transition 설정 */
 }
 
 .list.active {
-	display: visible; 
+	display: visible; /* active 클래스가 있을 때 리스트를 보이게 합니다. */
 	background-color: white;
 	opacity: 0.9;
 	transform: translate(-50%, -50%) scaleY(1);
-	
+	/* scaleX(1)을 적용하여 가로로 펼쳐지는 효과를 줍니다. */
 }
 
 .list::-webkit-scrollbar {
-	width: 7px; 
+	width: 7px; /* 스크롤바의 너비 설정 */
 }
 
 .list::-webkit-scrollbar-thumb {
-	background-color: rgba(0, 0, 0, 0.2); 
-	border-radius: 30px; 
-	height: 5px; 
+	background-color: rgba(0, 0, 0, 0.2); /* 스크롤바 색상 */
+	border-radius: 30px; /* 스크롤바 테두리 모양 */
+	height: 5px; /* 스크롤바 높이 */
 }
 
 .list::-webkit-scrollbar-track {
-	background-color: rgba(0, 0, 0, 0); 
+	background-color: rgba(0, 0, 0, 0); /* 스크롤바 트랙의 색상 */
 }
 
 .list button {

@@ -1,0 +1,65 @@
+package net.daum.controller;
+
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import net.daum.service.PlanService;
+import net.daum.vo.CityVO;
+import net.daum.vo.DestinationVO;
+import net.daum.vo.NationalVO;
+import net.daum.vo.PlanVO;
+
+@Controller
+public class ItineraryController {
+
+	@Autowired
+    private PlanService planservice;
+	
+	@PostMapping("/itinerary/{nationalCode}")
+	@ResponseBody
+	public ModelAndView itinerary(@PathVariable String nationalCode,
+                                  @RequestParam("departureDate") Date departureDate,
+                                  @RequestParam("arrivalDate") Date arrivalDate,
+                                  @RequestParam("selectedCityCodes") List<String> selectedCityCodes) {
+        
+		NationalVO nv= this.planservice.findNational(nationalCode);// 국가코드로 국가정보를 NationalVO에서 find
+        PlanVO p= new PlanVO();// planVO에 저장하기 위한 planVO p 객체 생성?
+        p.setArrivalDate(arrivalDate);
+        p.setDepartureDate(departureDate);
+        this.planservice.insertPlan(p);// 일정 저장 및 생성
+        
+        ModelAndView mv= new ModelAndView();// modelAndView 객체 생성
+        mv.setViewName("/jsp/itinerary");// 뷰페이지 설정
+        
+        List<CityVO> cities= new ArrayList<>();
+        for(String cityCode: selectedCityCodes) {
+        	CityVO c= this.planservice.getCityCode(cityCode.trim());
+        	if (c != null) {
+        		DestinationVO d= new DestinationVO();// DestinationVO에 저장하기위한 DestinationVO d 객체 생성?
+        		cities.add(c);
+        	    d.setPlan(p);
+        	    // 일정번호 설정
+        	    d.setCity(c);
+        	    this.planservice.insertDestination(d);
+        	}
+        }
+        mv.addObject("nationalCode", nationalCode);
+        mv.addObject("departureDate", departureDate);
+        mv.addObject("arrivalDate", arrivalDate);
+        mv.addObject("nationalName", nv.getNationalName());
+		mv.addObject("timeDifference", nv.getTimeDifference());
+		mv.addObject("flagPath", nv.getFlagPath());
+        mv.addObject("cities", cities);
+	    return mv;
+	}
+	
+}

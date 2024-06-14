@@ -1,0 +1,130 @@
+.C_container{
+	display: none;
+	flex-direction: column;
+	margin-top: 90px;
+	align-items: center;
+}
+
+.select_date{
+	margin-top: 10px;
+	color: #4174d9;
+	font-weight: bold;
+	font-size:17px;
+}
+
+.calendar-container{
+    text-align: center;
+    width: 300px;
+    height: 320px;
+    margin-top: 10px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  /* CSS의 Grid 레이아웃에서 사용되는 property 중 하나로, 
+  grid container의 열(column) 크기를 지정하는 것을 말한다.
+  repeat(7, 1fr) : 1행에 7개의 열이 있으며, 
+  각 열의 크기를 동일하게 1분의 1(fractional unit, fr)로 설정하라는 의미한다. */
+  font-weight: bold;
+  border-bottom: 1px solid #4174d9;
+  padding-bottom: 5px;
+}
+
+.day {
+  padding: 5px;
+  color: black;
+}
+
+.day1 {
+  padding: 5px;
+  color: red;
+}
+
+.day2 {
+  padding: 5px;
+  color: #4174d9;
+}
+
+.calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date {
+  cursor: pointer;
+  padding: 6px;
+  color: black;
+}
+
+#saturday{
+	cursor: pointer;
+	padding: 6px;
+	color: #4174d9;
+}
+
+#sunday{
+	cursor: pointer;
+	padding: 6px;
+	color: red;
+}
+
+.date:hover {
+    background-color: #4174d9;
+    color: white;
+}
+
+#saturday:hover{
+	background-color: #4174d9;
+    color: white;
+}
+
+#sunday:hover{
+	background-color: #4174d9;
+    color: white;
+}
+
+.date.first,
+.date.second,
+.date.selected{
+	background-color: #4174d9;
+	color: white;
+}
+
+#saturday.selected{
+	background-color: #4174d9;
+	color: white;
+}
+
+#sunday.selected{
+	background-color: #4174d9;
+	color: white;
+}
+
+#selectDates{
+	margin-top: 20px;
+	text-align: left;
+}
+
+#selectedDates {
+	margin: 20px;
+	font-size: 14px;
+	color: #4174d9;
+}
+
+#nextBtn,
+#prevBtn{
+	background-color: rgba(0, 0, 0, 0); /* 0%의 투명도 */
+	border: 0px;
+}
+
+i{
+	color: #4174d9;
+}

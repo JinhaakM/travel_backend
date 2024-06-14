@@ -9,19 +9,20 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
 	<p id="schedule_p">Schedule</p>
 		<%-- 버튼 박스 --%>
 		<div class="button_box">
-			<a id="btn_1">New Schedule</a>
-			<a id="btn_2">My Trip</a>
-			<a id="btn_3">Wish List</a>
-			<a id="btn_4">Share square</a>
+			<a class="btn_1" id="btn_1">New Schedule</a>
+			<a class="btn_2" id="btn_2">My Trip</a>
+			<a class="btn_3" id="btn_3">Wish List</a>
+			<a class="btn_4" id="btn_4">Share square</a>
 		</div>
 		<div class="container2">
 			<%-- 검색창 --%>
 			<div class="search_container">
-				<input class="search_input" type="text" placeholder="어디로 여행을 떠나시나요?" />
-				<button id= "search_btn" class="search_button" type="button" >
+				<input id="search_input" class="search_input" type="text" placeholder="어디로 여행을 떠나시나요?" />
+				<button id= "search_button" class="search_button" type="button" >
 					<i class="fa-solid fa-plane fa-2x"></i>
 				</button>
 			</div>
@@ -33,7 +34,7 @@
 			<ul id= "list" class="list">
 			   <c:forEach var="N" items="${Nlist}" varStatus="loop">
 			   <li>
-			       <button class="btn_1" data-index="${loop.index}" data-n_code="${N.n_code}">${N.n_name}</button>
+			       <button id= "btn_u" class="btn_u" data-index="${loop.index}" data-n_code="${N.nationalCode}">${N.nationalName}</button>
 			   </li>
 			   </c:forEach>
 			</ul>
@@ -44,4 +45,6 @@
 
 <%-- 외부 javascript 파일 연결 --%>
 <script src="../js/schedule.js"></script>
-<script src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous"></script>
+<script 
+    src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous">
+</script>

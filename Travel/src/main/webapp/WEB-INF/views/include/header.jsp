@@ -7,7 +7,7 @@
 	  <a href="homepage" class="logo-link">
             <img src="../images/main_logo.png" alt="HTML Logo">
         </a>
-            <li><a href="/Add_schedule">여행 계획</a></li>
+            <li><a href="/addschedule">여행 계획</a></li>
             <li><a href="/Share_c">여행 후기</a></li>       
             <li><a href="/Main">커뮤니티</a></li>
             <li><a href="/Alert">내 정보</a></li>

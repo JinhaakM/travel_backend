@@ -28,8 +28,8 @@ public class ImportApiController {
     public ImportApiController(@Value("${iamport.api.key}") String apiKey, @Value("${iamport.api.secret}") String apiSecret) {
     	
     		    this.api = new IamportClient(apiKey, apiSecret);
-    			System.out.println("API Key: " + apiKey);
-    			System.out.println("API Secret: " + apiSecret);
+    			//System.out.println("API Key: " + apiKey);
+    			//System.out.println("API Secret: " + apiSecret);
     }
 
     @PostMapping("/webendpoint")
@@ -38,6 +38,8 @@ public class ImportApiController {
         // 웹훅 수신 처리-가능한지만
     	// ngrok를 통해 통신한다.
     	// 포트원이 보내는 형식 {"imp_uid":"imp_614505216799","merchant_uid":"IMPtz60b24qh0elxd3320p","status":"paid"}
+    	
+    	
     	System.out.println(payload.getimp_uid());
     	System.out.println(payload.getmerchant_uid());
     	System.out.println(payload.getStatus());
@@ -63,7 +65,7 @@ public class ImportApiController {
             @RequestParam("merchant_uid") String merchant_uid,
             @RequestParam("amount") int amount) throws IamportResponseException, IOException {
 
-        System.out.println("Received amount from client: " + amount);
+        //System.out.println("Received amount from client: " + amount);
 
         IamportResponse<Payment> response = api.paymentByImpUid(imp_uid);
 
@@ -75,8 +77,8 @@ public class ImportApiController {
             return ResponseEntity.badRequest().body(errorResult);
         }
 
-        System.out.println("Payment amount from Iamport: " + payment.getAmount().intValue());
-        System.out.println("Payment merchant_uid from Iamport: " + payment.getMerchantUid());
+        //System.out.println("Payment amount from Iamport: " + payment.getAmount().intValue());
+        //System.out.println("Payment merchant_uid from Iamport: " + payment.getMerchantUid());
 
         Map<String, String> result = new HashMap<>();
         int expectedAmount = 9900; // 서버에서 직접 계산한 결제 금액

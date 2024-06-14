@@ -406,7 +406,7 @@ public class MainController {
 		PrintWriter out=response.getWriter();
 		out.println("<script>");
 		out.println("alert('결제가 완료됐습니다.');");
-		out.println("window.location.href = '/Add_schedule';");
+		out.println("window.location.href = '/addschedule';");
 		out.println("</script>");
 	}
 
@@ -418,12 +418,12 @@ public class MainController {
 		home.setViewName("jsp/main");
 		return home;
 	}
-	@GetMapping("/Add_schedule")
-	public ModelAndView Add_schedule() {
-		ModelAndView home=new ModelAndView();
-		home.setViewName("jsp/add_schedule");
-		return home;
-	}
+//	@GetMapping("/Add_schedule")
+//	public ModelAndView Add_schedule() {
+//		ModelAndView home=new ModelAndView();
+//		home.setViewName("jsp/add_schedule");
+//		return home;
+//	}
 	@GetMapping("/Share_c")
 	public ModelAndView Share_c() {
 		ModelAndView home=new ModelAndView();

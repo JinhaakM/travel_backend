@@ -4,9 +4,17 @@ select * from persistent_logins;
 select * from member;
 delete member where member.member_id='duwnstj';
 
+select * from plan;
+drop table member;
+drop table chat;
+drop table message;
+drop table persistent_logins;
+drop table national;
+drop table city;
+drop table plan;
+drop table destination;
 
-
-select * from chat;
+select * from plan;
 delete chat where chat.chat_no=3;
 
 
