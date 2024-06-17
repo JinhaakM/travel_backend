@@ -1,7 +1,7 @@
 select * from persistent_logins;
 
 
-select * from member;
+select * from chat;
 delete member where member.member_id='duwnstj';
 
 select * from plan;
