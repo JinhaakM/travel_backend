@@ -40,7 +40,7 @@ import net.daum.vo.MessageVO;
 
 @Controller
 public class MainController {
-
+//test
 	@Autowired
 	private MemberService memberService;
 	@Autowired

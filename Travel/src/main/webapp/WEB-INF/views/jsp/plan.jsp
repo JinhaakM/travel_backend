@@ -150,7 +150,7 @@
 	</div>
 	
 	<%-- 외부 javascript 파일 연결 --%>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPGWtIt0hlyij6LS3_UxqIb00Y_6LGnb8"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDV8uAIL5ZSZg_tZUBTRP557Q7wwf2XqT4"></script>
     
 	<script 
 	    src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous">

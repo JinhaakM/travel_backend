@@ -68,7 +68,7 @@ public class ImportApiController {
         //System.out.println("Received amount from client: " + amount);
 
         IamportResponse<Payment> response = api.paymentByImpUid(imp_uid);
-
+        
         Payment payment = response.getResponse();
         if (payment == null) {
             Map<String, String> errorResult = new HashMap<>();
