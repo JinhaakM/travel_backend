@@ -1,0 +1,69 @@
+body {
+  	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	/* background-image: url("../images/background_img_3.jpg"); */
+	background-color: black;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	position: relative;
+}
+
+.button_box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	align-items: center; /* 버튼을 수평 방향으로 가운데 정렬 */
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	background-color: rgba(0, 0, 0, 0.5); /* 50%의 투명도 */
+	width: 110px;
+	background-color: transparent;
+	border-radius: 10px;
+	padding: 10px;
+	margin-top: 200px;
+	margin-left: 20px;
+	border: 2px solid #4174d9;
+}
+
+.button_box a {
+	width: 110px;
+	height: 50px;
+	color: white;
+	background-color: #4174d9;
+	text-align: center;
+	margin-bottom: 5px; /* 버튼 아래쪽에 간격 추가 */
+	cursor: pointer;
+	text-decoration: none;
+	line-height: 50px; /* 버튼의 높이와 동일하게 설정 */
+	border: 2px solid #4174d9;
+	border-radius: 10px;
+}
+
+.button_box a:hover {
+	background-color: white;
+	color: #4174d9;
+}
+
+#btn_shcedule {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.0);
+    color: #4174d9;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: -390px;
+    margin-left: 1600px;
+}
+
+#btn_shcedule:hover {
+    color: white;
+}
+
+.thumbnail{
+	width: auto;
+	height: auto;
+}

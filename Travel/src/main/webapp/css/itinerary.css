@@ -1,0 +1,163 @@
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	/*background-image: url("../images/background_img_3.jpg");*/
+	background-color: white;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	position: relative;
+}
+.navlogo{
+	position: fixed;
+	width: 450px;
+	height: 65px;
+	background-color: #4174d9;
+}
+
+#logo{
+	width: 65px;
+	padding-left: 22px;
+}
+
+#logoid{
+	width: 111px;
+	background-color: white;
+	height: 65px;
+}
+#map {
+	width: calc(100% - 450px); /* 좌측 네비게이션 메뉴의 너비만큼 제외한 나머지 영역을 지도가 차지하도록 설정 */
+	flex: 1; /* 나머지 너비를 차지하도록 설정 */
+	height: 100vh; /* 높이는 화면을 꽉 채우도록 설정 */
+	float: right; /* 오른쪽으로 정렬합니다. */
+	position: relative; /* 부모 요소를 기준으로 배치될 것을 명시합니다. */
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+.container {
+	display: flex;
+	width: 450px; /* 화면 기준 좌측에 너비 450px */
+	height: 100vh; /* 높이는 화면을 꽉 채우도록 설정 */
+}
+
+.tab_menu {
+	display: none; /* 초기에 숨김 */
+	display: flex; /* md 이상에서만 표시 */
+	list-style: none;
+	flex-direction: column;
+	justify-content: space-between;
+	min-width: 100px;
+	padding-top: 65px;
+	padding-left: 0px;
+	width: 115px;
+	margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.tab_menu2{
+	display: flex;
+	flex-direction: column;
+	width: 350px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.first_btn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	color: black;
+	font-size: 15px;
+	text-align: center;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	cursor: pointer;
+}
+
+.first_btn.selected {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	background-color: #4174d9;
+	color: white;
+	font-size: 15px;
+	text-align: center;
+	padding: 0px;
+	height: 100%;
+	width: 100%;
+	border-radius: 0.5rem;
+	cursor: pointer;
+}
+
+#myPlan {
+	width: 80px;
+	height: 60px;
+	display: flex;
+	border-radius: 0.5rem;
+	justify-content: center;
+	align-items: center;
+	background-color: black;
+	color: white;
+	position: relative;
+	cursor: pointer;
+}
+
+.tab_item{
+	width: 100%;
+	height: 100%;
+}
+
+.tab_items{
+	margin-top: 20px;
+	padding-left: 10px;
+	width:80px;
+	height:60px;
+}
+
+.tab_items2 {
+	width: 80px;
+	height: 60px;
+	margin-bottom:10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.totalPlan{
+    display: flex;
+    width: 340px;
+    height: 30px;
+    color: #4174d9;
+    margin-top: 85px;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+	margin: 0;
+}
+
+.totalCity{
+	
+}
+
+.planNational{
+	height: 100px;
+	display: flex;
+	justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.planCityName{
+	
+}
+
+.planCityInfo{
+	
+}

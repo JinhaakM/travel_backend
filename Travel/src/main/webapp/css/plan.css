@@ -113,22 +113,27 @@ body {
 	margin-right: auto;
 }
 
-.tb_country{
-	display: flex;
+.country_main{
+	display: none;
     width: 340px;
     position: fixed;
     border-collapse: separate;
     border-spacing: 20px;
     margin-top: 80px;
+    flex-direction: column;
 }
 
+.country_item{
+	display: flex;
+	width: 340px;
+}
 .country_img{
 	width: 150px;
 	height: 100px;
 }
 
 .country_name{
-	width: 115px;
+	width: 150px;
 	height: 30px;
 	font-size: 20px;
 	text-align: left;
@@ -138,6 +143,8 @@ body {
 .country_time{
 	font-size: 20px;
 	font-weight: bold;
+	margin-top: -65px;
+	margin-left: 180px;
 }
 
 .tb_city{
@@ -156,6 +163,29 @@ body {
 .c_name,
 .plan_info {
 	color: black;
+	text-align: left;
+}
+
+.c_name{
+	font-size: 30px;
+}
+
+.city_main{
+	display: none;
+    width: 340px;
+    position: fixed;
+    margin-top: 65px;
+    border-spacing: 13px;
+}
+
+.city_main>th {
+  display: flex;
+  flex-direction: column;
+}
+
+.c_name,
+.plan_info {
+	color: black;
   text-align: left;
 }
 
@@ -164,45 +194,46 @@ body {
 }
 
 .select_city{
-	height: 60px;
+	height: 25px;
 	border: solid 0;
 	border-radius: 5px;
 	background-color: rgba(0, 0, 0, 0.1);
 }
 
 .city_list{
-	display: flex;
-	flex-direction: column;
     padding: 0;
     list-style-type: none;
 }
 
 .city_list>li{
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
 	width: 320px;
 	height: 80px;
 	margin-bottom: 20px;
 }
 
 .city_name{
-	width: 320px;
-	height: 20px;
+	width: 50px;
+	height: 25px;
 }
 
 .container_c{
-	height: 80px;
+	height: 25px;
+	display: flex;
+	align-items: center;
 }
 
-.city_info{
-	width: 300px;
-	height: 60px;
-	font-size: 12px;
-}
 
 .select_city:hover{
 	cursor: pointer;
+}
+
+#placeSearch{
+	width: 80%;
+	height: 30px;
+	font-size: 15px;
 }
 
 .t_modal{
@@ -212,8 +243,9 @@ body {
 	height: 470px;
 	background-color: rgba(255, 255, 255, 1);
 	position: absolute;
-	left: 43%;
-	top: 25%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	border-radius: 20px;
 	font-weight: bold;
 }
