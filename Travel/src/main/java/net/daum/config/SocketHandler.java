@@ -42,6 +42,7 @@ public class SocketHandler extends TextWebSocketHandler {
 		
 		String msg = message.getPayload();
 		//System.out.println(msg);
+		
 		JSONObject obj = jsonToObjectParser(msg);
 		
 		//String rN = (String)obj.get("room");

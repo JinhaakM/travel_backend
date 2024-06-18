@@ -1,0 +1,163 @@
+/* General styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.input-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.input-container h1 {
+    text-align: center;
+    color: #007BFF;
+    margin-bottom: 30px;
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 10px;
+    letter-spacing: 1.5px;
+}
+
+.input-container input,
+.input-container textarea,
+.input-container select {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: #fafafa;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-container textarea {
+    height: 150px;
+}
+
+.input-container input:focus,
+.input-container textarea:focus,
+.input-container select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+.input-container button {
+    width: 100%;
+    padding: 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+.input-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.input-container button:active {
+    background-color: #004080;
+}
+
+/* Existing images styles */
+.existing-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.image-item {
+    position: relative;
+    width: 120px;
+    margin: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #fafafa;
+}
+
+.image-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.image-item img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.image-item label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    padding: 5px 0;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+
+.image-item input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 5px;
+    transform: scale(1.2);
+    transition: transform 0.2s;
+}
+
+.image-item input[type="checkbox"]:hover {
+    transform: scale(1.4);
+}
+
+.image-item input[type="checkbox"]:checked + label {
+    color: #dc3545; /* Red color */
+}
+
+/* Add hover effect to the form fields */
+.input-container input:hover,
+.input-container textarea:hover,
+.input-container select:hover {
+    border-color: #bbb;
+}
+
+/* Add some more space between form fields */
+.input-container input,
+.input-container textarea,
+.input-container select {
+    margin-bottom: 25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .input-container {
+        padding: 20px;
+    }
+
+    .input-container input,
+    .input-container textarea,
+    .input-container select {
+        padding: 10px;
+    }
+}

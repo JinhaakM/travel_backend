@@ -21,7 +21,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 @Entity
 @Table(name="message")
 @EqualsAndHashCode(of="messageNo")

@@ -19,4 +19,3 @@ public class WebSocketConfig implements WebSocketConfigurer{
 		registry.addHandler(socketHandler, "/chating/{chatNumber}");
 	}
 }
-

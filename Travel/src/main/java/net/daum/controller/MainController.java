@@ -412,12 +412,12 @@ public class MainController {
 
 	
 	//병합 전 시큐리티 접근 가능 여부 파악
-	@GetMapping("/Main")
-	public ModelAndView Main() {
-		ModelAndView home=new ModelAndView();
-		home.setViewName("jsp/main");
-		return home;
-	}
+//	@GetMapping("/Main")
+//	public ModelAndView Main() {
+//		ModelAndView home=new ModelAndView();
+//		home.setViewName("jsp/main");
+//		return home;
+//	}
 //	@GetMapping("/Add_schedule")
 //	public ModelAndView Add_schedule() {
 //		ModelAndView home=new ModelAndView();

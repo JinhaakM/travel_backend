@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd" >
+
+<configuration>
+	<!-- 데이터 저장빈 클래스 객체 별칭이름을 관리해 주는 파일이다. -->
+
+	<typeAliases>
+		<typeAlias type="net.daum.vo.Community_boardVO" alias="cm_board" />
+
+	</typeAliases>
+</configuration>

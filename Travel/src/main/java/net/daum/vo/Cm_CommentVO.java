@@ -2,7 +2,6 @@ package net.daum.vo;
 
 import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +16,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,16 +25,15 @@ import lombok.ToString;
 
 @Getter 
 @Setter
-@ToString
+@ToString(exclude="communityBoard")
+@EqualsAndHashCode(of="commentNo")
 @Entity
 @SequenceGenerator(// 오라클 시퀀스 생성기
 		name = "comment_noseq_gename", 
 		sequenceName = "comment_no_seq", // 시퀀스 이름
 		initialValue = 1, // 시퀀스 시작값
 		allocationSize = 1
-
 )
-@EqualsAndHashCode(of="commentNo")
 @Table(name ="cm_comment")
 
 
@@ -43,8 +43,9 @@ public class Cm_CommentVO {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "comment_noseq_gename")
 	private Long commentNo;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="mateno",nullable=false)
+	@JsonBackReference
 	private Community_boardVO communityBoard;
 	
 	

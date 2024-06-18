@@ -44,5 +44,5 @@ public class Cm_ImgVO {
 	@CreationTimestamp
 	private Timestamp uploaddate;	
 	
-	private Long mateno2;//??? 이건 왜 필요하지.
+	private Long mateno2;
 }

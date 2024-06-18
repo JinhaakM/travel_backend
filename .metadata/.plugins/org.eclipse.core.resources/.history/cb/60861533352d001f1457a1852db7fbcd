@@ -1,0 +1,56 @@
+package net.daum.vo;
+
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name="chat")
+@EqualsAndHashCode(of="chatNo")
+@SequenceGenerator(
+		name="chat_no_seq_gename",
+		sequenceName="chat_no_seq",
+		initialValue = 1,
+		allocationSize = 1
+		)
+public class ChatVO {//유저별로 채팅방을 구분하기 위해 만든 테이블
+	
+	@Id
+    @GeneratedValue(
+            strategy=GenerationType.SEQUENCE,
+            generator="chat_no_seq_gename"
+            )
+    private long chatNo;
+    
+    @OneToOne(mappedBy="chatVO")
+    @JsonManagedReference
+    private MemberVO memberVO;
+    
+    
+	@OneToMany(mappedBy = "chatVO",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	private List<MessageVO> messages = new ArrayList<>();
+
+}

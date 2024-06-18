@@ -3,64 +3,128 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #87CEEB, #ADD8E6); 
+  background: linear-gradient(135deg, #87CEEB, #ADD8E6); /* 하늘과 바다를 연상시키는 푸른 그라데이션 배경 */
   position: relative;
   min-height: 100vh;
 }
+
+
 /* 제목 스타일 */
 h2 {
-  color: #333; 
+  color: #333; /* 회색 계열의 글자색 사용 */
   text-align: center;
-  margin-top: 20px; 
-  margin-bottom: 50px;
+  margin-bottom: 20px 0; /* 여백을 조정하여 게시물과의 간격을 줄입니다. */
 }
+
 
 /* 게시물 검색창 스타일 */
 .post-container {
-  max-width: 600px;
-  margin: 20px auto;
+  max-width: 500px; /* 게시글 폼의 최대 너비를 설정 */
+  display:flex;
+  flex-direction: column;
+  margin: 20px auto; /* 상단과 하단에 여백을 주고 가운데 정렬 */
+  align-items:center;
 }
 
+
+/* 게시물 검색창 스타일 */
 .search-container {
-  text-align: center;
-  padding: 10px;
+  display: flex; /* 내부 요소들을 가로로 나열합니다. */
+  align-items: center; /* 내부 요소들을 세로 중앙 정렬합니다. */
+  justify-content: center; /* 내부 요소들을 가로 중앙 정렬합니다. */
+  margin-bottom: 20px;
+  width:800px;
 }
 
-#search-input {
-  width: calc(100% - 100px);
+#searchInput {
+  flex: 1; /* 검색 입력창이 최대한 확장되도록 설정합니다. */
   height: 40px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-right: 10px;
   border: 1px solid #ddd;
   border-radius: 20px;
   font-size: 16px;
 }
 
-#search-button {
+#searchInput::placeholder {
+  color: #999;
+}
+
+#searchInput:focus {
+  background: rgba(255, 255, 255, 1); /* 포커스 시 흰색 배경으로 변경 */
+  outline: none; /* 포커스 시 아웃라인 제거 */
+}
+
+#searchType {
+  height: 40px;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 16px;
+}
+/* 버튼 기본 스타일 */
+
+button.user-background-color {
+  height: 40px;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+  background-color: #4174d9; /* 기본 색상 */
+}
+
+button.user-background-color:hover {
+  background-color: #375bb0; /* 호버된 색상 */
+}
+button.user-background-color:focus {
+  outline: none; /* 포커스 시 아웃라인 제거 */
+}
+
+
+
+/* 검색 폼 내의 검색 버튼 */
+.search-container button.user-background-color {
+    width: 65px; /* 버튼 너비 */
+    height: 32px; /* 버튼 높이 */
+    font-size: 12px; /* 글자 크기 */
+    text-align:center;
+}
+
+
+#mt_hashtag {
   padding: 8px 16px;
-  background-color: #4174d9; 
+  background-color: #4174d9; /* 버튼 색깔을 기존 색상 그대로 사용 */
   border: none;
   color: white;
   cursor: pointer;
   border-radius: 20px;
   transition: background-color 0.3s;
 }
+.interactions {
+  display: flex;
+  justify-content: space-between; /* 좋아요와 댓글 버튼 간격을 최대한 벌리기 */
+  align-items: center;
+}
 
-#search-button:hover {
-  background-color: #3366cc; 
+
+#mt_hashtag:hover {
+  background-color: #3366cc; /* 진한 파란색 계열 */
 }
 
 /* 사이드바 스타일 */
 .sidebar {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column; /* 세로로 배치합니다. */
   width: 200px;
-  padding: 30px;
   margin-bottom: 150px;
-  margin-left:20px;
-  background-color: #F0FFFF; 
-  border-radius:20px;
-  }
+  margin-left: 20px;
+  background-color: #F0FFFF; /* 연한 푸른 계열의 색상으로 사이드바 배경 설정 */
+  border-radius: 20px;
+}
 
 .sidebar ul {
   list-style-type: none;
@@ -68,13 +132,11 @@ h2 {
 }
 
 .sidebar ul li {
-	
-  margin-bottom: 40px; 
+  margin-bottom: 40px; /* 마진을 줄여 레이아웃을 조정합니다. */
   font-size: 18px;
   font-weight: bold;
-  background-color: #F0FFFF; 
+  
 }
-
 
 .sidebar ul li a {
   text-decoration: none;
@@ -86,74 +148,60 @@ h2 {
   color: #4174d9;
 }
 
-/* 팝업 스타일 */
-.container3 {
-  position: relative;
-  margin-left: 20px;
-}
-
-.popup {
-  width: 300px;
-  height: 400px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  border: 3px solid black;
-  padding: 20px;
-  z-index: 999;
-  display: none;
-  border-radius:20px;
-}
-
-
-.popup.active {
-  display: block;
-}
-
-#openPopup,
-#closePopup {
-  background-color: #4174d9;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 20px; 
-}
-
-#openPopup:hover,
-#closePopup:hover {
-  background-color: #3366cc; 
-}
-
 /* 게시글 스타일 */
-.post,
+
 .instagram-post {
-  background-color: #fff;
+	
+  width:100%;
+  max-width:500px;
   border-radius: 10px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-  margin: 20px auto;
-  max-width: 600px;
+  margin: 30px auto;
+  display:flex;
+  flex-direction: column;
+  position :relative;
+   background-color: #fff;
+    padding: 20px;
+     align-items: center;
 }
 
+.instagram-post img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
-.post .profile,
+ .profile,
 .instagram-post .profile {
   padding: 10px;
   display: flex;
   align-items: center;
+  height:80px;
+}
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+.image-grid img {
+  width: 100%;
+  height: auto;
+}
+.profile{
+	 display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
 .profile img {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   margin-right: 10px;
+}
+.profile p {
+  margin: 0;
 }
 
 .username {
@@ -163,6 +211,14 @@ h2 {
 .post-content,
 .instagram-post .post-content {
   padding: 10px;
+  margin-bottom: 10px;
+  
+}
+.post-content {
+  padding: 10px;
+  margin-bottom:10px;
+  flex:1;
+  position:relative;
 }
 
 .post-content p,
@@ -172,8 +228,21 @@ h2 {
 
 .post-content img,
 .instagram-post .post-content img {
-  width: 100%;
+  width: 30%;
   border-radius: 10px;
+}
+.user-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 10px; /* 제목과 다음 내용 사이 간격 조정 */
+}
+.user-cont {
+  font-size: 16px;
+  margin: 0 0 10px; /* 각 내용들 사이 간격 조정 */
+}
+.user-updatedate {
+  font-style: italic;
+  color: #888; /* 업데이트 날짜 색상 */
 }
 
 /* 인스타그램 스타일의 게시물 폼 */
@@ -198,3 +267,75 @@ h2 {
 .instagram-post .interactions .comment-button:hover {
   color: #4174d9;
 }
+
+.toggle-button {
+	 position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #4174d9; /* 기본 색상 */
+  color: white;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 5px; /* 더 작은 둥근 모서리 */
+  cursor: pointer;
+  transition: background-color 0.3s; /* 호버 효과를 위한 전환 효과 */ 
+}
+
+.toggle-button:focus {
+    outline: none;
+}
+.toggle-button:hover{
+	 background-color: #3366cc; /* 호버 효과에 따라 배경색 변경 */
+}
+
+.options {
+ display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  list-style-type: none;
+  padding: 0;
+  top : 50px; /* 버튼 아래로 조금 내림 */
+  right: -50px; /* 오른쪽으로 이동 */
+  border-radius: 5px; /* 더 작은 둥근 모서리 */
+}
+
+.options li {
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.options li:hover {
+    background-color: #ddd;
+}
+
+
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .pagination a {
+        color: #007bff;
+        text-decoration: none;
+        padding: 8px 16px;
+        margin: 0 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .pagination a:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .pagination .active {
+        background-color: #007bff;
+        color: #fff;
+    }
