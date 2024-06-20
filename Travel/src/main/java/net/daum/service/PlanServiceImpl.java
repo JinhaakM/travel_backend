@@ -39,4 +39,9 @@ public class PlanServiceImpl implements PlanService {
 		return this.planDao.getCityCode(cityCode);
 	}
 
+	@Override
+	public List<PlanVO> allUserPlan() {	
+		return this.planDao.allUserPlan();
+	}
+
 }

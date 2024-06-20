@@ -8,12 +8,14 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -57,7 +59,15 @@ public class PlanVO {
 	@Column(name= "plan_date", nullable = false)
     private Timestamp planDate;// 일정생성날짜
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private MemberVO memberVO;
+	
+	   @ManyToMany
+	   @JoinTable(
+	         name= "plan_city",
+	         joinColumns= @JoinColumn(name= "plan_no"),
+	         inverseJoinColumns= @JoinColumn(name= "city_code")
+	         )
+	   private List<CityVO>cities= new ArrayList<>();
 }

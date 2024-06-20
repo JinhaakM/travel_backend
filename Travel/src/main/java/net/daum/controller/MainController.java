@@ -34,15 +34,19 @@ import org.springframework.web.servlet.ModelAndView;
 import com.siot.IamportRestClient.IamportClient;
 
 import net.daum.service.MemberService;
+import net.daum.service.PlanService;
 import net.daum.vo.ChatVO;
 import net.daum.vo.MemberVO;
 import net.daum.vo.MessageVO;
+import net.daum.vo.PlanVO;
 
 @Controller
 public class MainController {
 //test
 	@Autowired
 	private MemberService memberService;
+	@Autowired
+	private PlanService planService;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -410,7 +414,37 @@ public class MainController {
 		out.println("</script>");
 	}
 
-	
+	@GetMapping("/homepageSearch")
+	public ModelAndView homepageSearch(String searchInput) {
+		
+		//System.out.println(searchInput);
+		List<PlanVO> p=new ArrayList();
+		p=this.planService.allUserPlan();
+		int busanGo=0;
+		int seoulGo=0;
+		int tokyoGo=0;
+		
+		for(int i=0; i<p.size(); i++) {
+			int a= p.get(i).getCities().size();//한 계획 안에 들어 있는 여러 여행지
+			for(int j=0; j<a; j++) {//그 여행지마다 갯수 지정.
+				if(p.get(i).getCities().get(j).getCityCode().equals("PUS")) busanGo++;
+				if(p.get(i).getCities().get(j).getCityCode().equals("SEL")) seoulGo++;
+				if(p.get(i).getCities().get(j).getCityCode().equals("TYO")) tokyoGo++;	
+				//System.out.println(p.get(i).getCities().get(j).getCityCode());
+			}
+		}
+		
+		//System.out.println(busanGo);
+		//System.out.println(seoulGo);
+		//System.out.println(tokyoGo);
+		
+		ModelAndView search=new ModelAndView();
+		search.addObject("searchInput", searchInput);
+		
+		search.setViewName("jsp/searchResult");
+		
+		return search;
+	}
 	//병합 전 시큐리티 접근 가능 여부 파악
 //	@GetMapping("/Main")
 //	public ModelAndView Main() {

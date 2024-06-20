@@ -19,14 +19,16 @@
 	
 	<div class="content">
 		<main>
-			<form id="searchForm" action="#" method="GET">
+    
+			<form id="searchForm" action="/homepageSearch" method="GET">
 				<!-- 폼 생성 -->
 				<div class="search-container">
-					<input type="text" class="search-bar" id="searchInput">
+					<input type="text" class="search-bar" name= "searchInput" id="searchInput">
 					<button type="submit" class="search-button">To World</button>
 					<!-- submit 버튼 추가 -->
 				</div>
 			</form>
+			
 		</main>
 	</div>
 	</div>

@@ -1,0 +1,222 @@
+body {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	font-family: "Reddit Mono", monospace;
+}
+
+#map {
+	width: calc(100% - 450px); /* 좌측 네비게이션 메뉴의 너비만큼 제외한 나머지 영역을 지도가 차지하도록 설정 */
+	flex: 1; /* 나머지 너비를 차지하도록 설정 */
+	height: 800px; /* 높이는 화면을 꽉 채우도록 설정 */
+	float: right; /* 오른쪽으로 정렬합니다. */
+	position: relative; /* 부모 요소를 기준으로 배치될 것을 명시합니다. */
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: row;
+}
+
+.container {
+	display: flex;
+	width: 450px; /* 화면 기준 좌측에 너비 450px */
+	height: 100vh; /* 높이는 화면을 꽉 채우도록 설정 */
+}
+
+
+.tb_city{
+	display: none;
+    width: 340px;
+    position: fixed;
+    margin-top: 65px;
+    border-spacing: 13px;
+}
+
+.tb_city>th {
+  display: flex;
+  flex-direction: column;
+}
+
+.c_name,
+.plan_info {
+	color: black;
+	text-align: left;
+}
+
+.c_name{
+	font-size: 30px;
+}
+
+.city_main{
+	display: none;
+    width: 340px;
+    position: fixed;
+    margin-top: 65px;
+    border-spacing: 13px;
+}
+
+.city_main>th {
+  display: flex;
+  flex-direction: column;
+}
+
+.c_name,
+.plan_info {
+	color: black;
+  text-align: left;
+}
+
+.c_name{
+	font-size: 30px;
+}
+
+.select_city{
+	height: 25px;
+	border: solid 0;
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+.city_list{
+    padding: 0;
+    list-style-type: none;
+}
+
+.city_list>li{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 320px;
+	height: 80px;
+	margin-bottom: 20px;
+}
+
+.city_name{
+	width: 50px;
+	height: 25px;
+}
+
+.container_c{
+	height: 25px;
+	display: flex;
+	align-items: center;
+}
+
+
+.select_city:hover{
+	cursor: pointer;
+}
+
+#placeSearch{
+	width: 80%;
+	height: 30px;
+	font-size: 15px;
+}
+
+.t_modal{
+	display: none;
+	z-index: 10;
+	width: 275px;
+	height: 470px;
+	background-color: rgba(255, 255, 255, 1);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 20px;
+	font-weight: bold;
+}
+
+.t_modal>p{
+	text-align: center;
+	color: #4174d9;
+	font-weight: bold;
+}
+
+.modal_background{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 9;
+}
+
+.modal_content{
+	padding: 10px;
+	font-size: 15px;
+	color: #4174d9;
+}
+
+.airlineTickets{
+	display: flex;
+	margin-top: 60px;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.airlineTickets>a{
+	display: flex;
+	justify-content:center;
+	align-items: center;
+	padding: 5px 0px;
+	border-bottom: solid 1px #4174d9;
+}
+
+a{
+	cursor:pointer;
+}
+
+.create_btn{
+	position: absolute;
+    bottom: 20px;
+    left: 65px;
+    width: 70px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    color: #4174d9;
+    cursor: pointer;
+}
+
+#closeModal{
+	position: absolute;
+    bottom: 20px;
+    left: 140px;
+    width: 70px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    color: #4174d9;
+    cursor: pointer;
+}
+.fa-plane{
+	animation: moveRight 5s linear infinite;
+	position: absolute;
+	top: 55px;
+	left: 5px;
+	opacity: 1;
+}
+
+@keyframes moveRight{
+	0%{
+	transform: translateX(0);
+	opacity: 1;
+	}
+	35%{
+	transform:translateX(calc(100% - -180px));
+	opacity: 1;
+	}
+	40%{
+	transform: translateX(calc(100% - -180px));
+	opacity: 0;}
+	100%
+	{transform: translateX(0);
+	opacity: 0;
+	}
+}

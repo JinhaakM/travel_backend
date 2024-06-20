@@ -1,0 +1,82 @@
+document.addEventListener('DOMContentLoaded', function() {
+   // 버튼 요소 가져와서 정의
+    const firstBtn = document.querySelector('.first_btn');
+    const secondBtn = document.querySelector('.second_btn');
+    const thirdBtn = document.querySelector('.third_btn');
+    
+    const countryMain= document.querySelector('.country_main');
+    const Date= document.querySelector('.c_container');
+    const cityMain= document.querySelector('.city_main');
+		
+// 현재 URL 가져오기
+    var currentUrl = window.location.href;
+    // URL에 "main"이 포함되어 있는지 확인
+    
+if (currentUrl.includes("search")) {
+function initdefaultMap() {
+        // 지도의 중심 좌표를 설정합니다. 위도(latitude)와 경도(longitude) 값을 지정합니다.
+        var myLatLng = {lat: 37.5665, lng: 126.9780};
+
+        // 지도를 생성하고 #map 요소에 표시합니다.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 10 // 줌 레벨을 조정할 수 있습니다.
+        });
+    }
+initdefaultMap();
+ 
+}else {// url에 main이 포함되어있는지 확인하는 if()
+       // main이 포함되어 있지 않은 경우 실행
+        // 지도 초기화
+var marker
+var map
+function initMap() {
+    // 지도의 중심 좌표를 설정
+    var myLatLng = {lat: latitudes[0], lng: longitudes[0]};
+    // 지도 생성
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: myLatLng,
+        zoom: 10 // 줌 레벨을 조정할 수 있습니다.
+    });
+
+
+    
+ const initAutocomplete = () => {
+            //const input = document.getElementById("placeSearch");
+            const options = {
+                componentRestrictions: { country: "nationalCode" }, // Example: Restrict to United States
+                fields: ["address_components", "geometry"],
+            };
+
+            const autocomplete = new google.maps.places.Autocomplete(searchInput, options);
+
+            autocomplete.addListener("place_changed", () => {
+                const place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    console.error("Place details not found for input: ", input.value);
+                    return;
+                }
+
+                const lat = place.geometry.location.lat();
+                const lng = place.geometry.location.lng();
+                if(marker){
+					marker.setPosition({lat, lng});
+				}else{
+					marker= new google.maps.Marker({
+                    position: { lat, lng },
+                    map: map,
+                    title: 'Selected Place'						
+					});
+				}
+                map.setCenter({ lat, lng });
+            });
+        };
+        initAutocomplete();
+}// initMap();
+
+initMap();
+
+
+    }
+
+});

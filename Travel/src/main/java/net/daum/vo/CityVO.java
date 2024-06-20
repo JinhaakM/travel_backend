@@ -1,7 +1,9 @@
 package net.daum.vo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,14 +38,12 @@ public class CityVO {
 	@Column(name= "longitude", nullable= false)
 	private double longitude;// 경도
 	
-	@Column(name= "city_info", nullable= true, length= 4000)
-	private String cityInfo;
 	
 	@Column(name= "capital_city", nullable= true)
 	private String capitalCity;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn (name="national_code")
 	private NationalVO nationalCode;
 }

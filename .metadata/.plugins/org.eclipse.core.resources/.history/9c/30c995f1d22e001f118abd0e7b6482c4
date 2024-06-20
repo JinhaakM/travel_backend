@@ -1,0 +1,36 @@
+document.addEventListener('DOMContentLoaded', function() {
+    initMap();
+});
+
+function initMap() {
+    // 기본 지도 설정
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 37.5665, lng: 126.9780},
+        zoom: 10
+    });
+
+    // 장소 검색 서비스 생성
+    var service = new google.maps.places.PlacesService(map);
+
+    // 장소 검색 요청
+    service.textSearch({
+        query: searchInput
+    }, function(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var bounds = new google.maps.LatLngBounds();
+
+            for (var i = 0; i < results.length; i++) {
+                var place = results[i];
+                if (place.geometry && place.geometry.location) {
+                    bounds.extend(place.geometry.location);
+                }
+            }
+
+            // 검색 결과에 맞게 지도의 경계 설정
+            map.fitBounds(bounds);
+            map.zoom(10);
+        } else {
+            console.error('Place search failed due to: ' + status);
+        }
+    });
+}

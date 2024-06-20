@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="../css/homepage_css.css">
+</head>
+
+<body>
+<jsp:include page="../include/header.jsp" />
+
+
+<div id="map"></div>
+
+<jsp:include page="../include/footer.jsp" />
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ4RyCuYJe7JbBpsNsi3_CUlpNlsKxOe8&libraries=places"></script>
+	<script 
+	    src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous">
+	</script>
+	<script src="../js/planDestination.js"></script>
+	<script src="../js/plancalendar.js"></script>
+</body>
+</html>

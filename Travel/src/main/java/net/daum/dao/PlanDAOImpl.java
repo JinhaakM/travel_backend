@@ -2,6 +2,8 @@ package net.daum.dao;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -43,6 +45,11 @@ public class PlanDAOImpl implements PlanDAO {
 	@Override
 	public CityVO getCityCode(String cityCode) {
 		return this.cityRepo.findByCityCode(cityCode);
+	}
+
+	@Override
+	public List<PlanVO> allUserPlan() {
+		return this.planRepo.allUserPlan();
 	}
 
 }

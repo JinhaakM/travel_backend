@@ -20,4 +20,6 @@ public interface PlanService {
 
 	CityVO getCityCode(String cityCode);
 
+	List<PlanVO> allUserPlan();
+
 }
