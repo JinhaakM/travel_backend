@@ -45,6 +45,9 @@ public class MemberVO {
 	@OneToMany(mappedBy = "memberVO",cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Community_boardVO> community_boardVO = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "memberVO",cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<ShareSquareVO> ShareSquareVO = new ArrayList<>();
+	
 	private String member_name;
 	private String resident_id;
 	private String resident_id2;

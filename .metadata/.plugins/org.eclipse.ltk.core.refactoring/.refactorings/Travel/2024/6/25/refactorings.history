@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Travel/src/main/webapp/js/plancalendar.js&apos; to &apos;planCalendar.js&apos;" description="Rename resource &apos;plancalendar.js&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/js/plancalendar.js" name="planCalendar.js" stamp="1718959756837" updateReferences="true"/>
+</session>

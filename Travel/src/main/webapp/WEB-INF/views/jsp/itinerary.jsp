@@ -26,6 +26,7 @@
     	}<c:if test="${not loop.last}">,</c:if>
     	</c:forEach>
     	];
+    console.log(latitude);
 </script>
 
 </head>
@@ -65,7 +66,7 @@
                         <div>${nationalName}</div>
                         </div>
                             <div class="planCityName" id="planCityName">${city.cityName}</div>
-                                <div class="planCityInfo" if="planCityInfo">${city.cityInfo}</div>
+
                     </c:forEach>
                     </div>                
                 </div>
@@ -74,8 +75,8 @@
 		    <div id="map"></div>
 	</div>
 	
-	<%-- 외부 javascript 파일 연결 --%>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ4RyCuYJe7JbBpsNsi3_CUlpNlsKxOe8"></script>
+	<!--이곳은 시크릿 키 자리-->
+
     
 	<script 
 	    src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous">

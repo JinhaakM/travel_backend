@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.daum.service.MemberService;
@@ -19,7 +19,6 @@ import net.daum.service.PlanService;
 import net.daum.vo.CityVO;
 import net.daum.vo.DestinationVO;
 import net.daum.vo.MemberVO;
-import net.daum.vo.NationalVO;
 import net.daum.vo.PlanVO;
 
 @Controller
@@ -27,53 +26,59 @@ public class ItineraryController {
 
 	@Autowired
     private PlanService planservice;
+	
 	@Autowired
 	private MemberService memberService;
 	
 	@PostMapping("/itinerary/{nationalCode}")
-	@ResponseBody
-	public ModelAndView itinerary(@PathVariable String nationalCode,
+	public String itinerary(@PathVariable String nationalCode,
+                                  @AuthenticationPrincipal UserDetails userDetails,
                                   @RequestParam("departureDate") Date departureDate,
                                   @RequestParam("arrivalDate") Date arrivalDate,
                                   @RequestParam("selectedCityCodes") List<String> selectedCityCodes,
-                                  @AuthenticationPrincipal UserDetails userDetails) {
-        
-		NationalVO nv= this.planservice.findNational(nationalCode);// 국가코드로 국가정보를 NationalVO에서 find
+                                  @RequestParam("placeLatitude[]") List<Double> placeLatitude,
+                                  @RequestParam("placeLongitude[]") List<Double> placeLongitude,
+                                  @RequestParam("placeName[]") List<String> placeName)
+	{
         PlanVO p= new PlanVO();// planVO에 저장하기 위한 planVO p 객체 생성?
-        
-        String username=userDetails.getUsername();	
-       
-		MemberVO m= this.memberService.idCheck(username);
-        
+        String userID=userDetails.getUsername();
+        MemberVO m= this.memberService.idCheck(userID);
         
         p.setArrivalDate(arrivalDate);
         p.setDepartureDate(departureDate);
         p.setMemberVO(m);
-        this.planservice.insertPlan(p);// 일정 저장 및 생성
         
-        ModelAndView mv= new ModelAndView();// modelAndView 객체 생성
-        mv.setViewName("/jsp/itinerary");// 뷰페이지 설정
-        
+        // 도시코드로 CityVO객체 조회 후 PlanVO에 추가
         List<CityVO> cities= new ArrayList<>();
         for(String cityCode: selectedCityCodes) {
-        	CityVO c= this.planservice.getCityCode(cityCode.trim());
-        	if (c != null) {
-        		DestinationVO d= new DestinationVO();// DestinationVO에 저장하기위한 DestinationVO d 객체 생성?
-        		cities.add(c);
-        	    d.setPlan(p);
-        	    // 일정번호 설정
-        	    d.setCity(c);
-        	    this.planservice.insertDestination(d);
+        	CityVO CV= this.planservice.getCityCode(cityCode);
+        	if( CV != null) {
+        		cities.add(CV);
         	}
         }
-        mv.addObject("nationalCode", nationalCode);
-        mv.addObject("departureDate", departureDate);
-        mv.addObject("arrivalDate", arrivalDate);
-        mv.addObject("nationalName", nv.getNationalName());
-		mv.addObject("timeDifference", nv.getTimeDifference());
-		mv.addObject("flagPath", nv.getFlagPath());
-        mv.addObject("cities", cities);
-	    return mv;
+        p.setCities(cities);
+        
+        this.planservice.insertPlan(p);// 일정 저
+        
+        		for(int i=0; i<placeLatitude.size(); i++) {
+        		DestinationVO d= new DestinationVO();// DestinationVO에 저장하기위한 DestinationVO d 객체 생성?
+        	    d.setPlan(p);
+        	    // 일정번호 설정
+        	    Double latitude= placeLatitude.get(i);
+        	    Double longitude= placeLongitude.get(i);
+        	    String name= placeName.get(i);
+        	    d.setPlaceLatitude(latitude);
+        	    d.setPlaceLongitude(longitude);
+        	    d.setPlaceName(name);
+        	    this.planservice.insertDestination(d);
+        	    }
+        		return "redirect:/mytrip";
 	}
-	
+
+	@GetMapping("/itinerary/{nationalCode}")
+	public ModelAndView myItinerary (@PathVariable String nationalCode){
+		
+		return null;
+	}
 }
+

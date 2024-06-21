@@ -8,7 +8,15 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<!-- 데이터 저장빈 클래스 객체 별칭이름을 관리해 주는 파일이다. -->
 
 	<typeAliases>
-		<typeAlias type="net.daum.vo.Community_boardVO" alias="cm_board" />
-
+	<typeAlias type="net.daum.vo.Community_boardVO" alias="cm_board" />
+     <typeAlias type="net.daum.vo.ShareReplyVO" alias="sreply" />
+  	 <typeAlias type="net.daum.vo.ShareSquareVO" alias="s_square" />
+ 	 <typeAlias type="net.daum.vo.PageVO" alias="page"/>
 	</typeAliases>
+	
+	
+	
+	
+	
+	
 </configuration>

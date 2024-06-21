@@ -1,0 +1,228 @@
+@charset "EUC-KR";@charset "UTF-8";
+
+/*ShareSquare.jsp ui*/
+@media screen and (max-width: 600px) {
+
+}
+
+/*일정공유 메인이미지*/
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-image: url("../images/main_back.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.line {
+	border-top: 3px solid #ffffff;
+	margin: 100px 0;
+}
+
+.line p {
+	margin-top: -80px;
+	margin-left: 840px;
+	font-size: 20px;
+	font-weight: bold;
+	color: #ffffff;
+}
+
+/*일정공유 상단*/
+.search-box{
+	margin-top: -170px;
+	margin-left: 1300px;
+}
+
+.search-box select{
+	width: 60px;
+	height: 30px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	font-size: 14px;
+}
+
+.search-box input{
+	width: 300px;
+	height: 30px;
+	top: 80px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	font-size: 14px;
+}
+.s-button{
+	margin-top: -30px;
+	margin-left: 368px;
+}
+
+.s-button input{	
+	width: 60px;
+	height: 30px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	font-size: 14px;
+}
+
+
+.button_box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	align-items: center; /* 버튼을 수평 방향으로 가운데 정렬 */
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	background-color: rgba(0, 0, 0, 0.5); /* 50%의 투명도 */
+	width: 110px;
+	background-color: transparent;
+	border-radius: 10px;
+	padding: 10px;
+	margin-left: 20px;
+	position: absolute;
+	top: 265px;
+	border: 2px solid #4174d9;
+}
+
+.button_box a {
+	width: 110px;
+	height: 50px;
+	color: white;
+	background-color: #4174d9;
+	text-align: center;
+	margin-bottom: 5px; /* 버튼 아래쪽에 간격 추가 */
+	cursor: pointer;
+	text-decoration: none;
+	line-height: 50px; /* 버튼의 높이와 동일하게 설정 */
+	border: 2px solid #4174d9;
+	border-radius: 10px;
+}
+
+.button_box a:hover {
+	background-color: white;
+	color: #4174d9;
+}
+
+.sort-box {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	align-items: center; /* 버튼을 수평 방향으로 가운데 정렬 */
+	width: 110px;
+	background-color: transparent;
+	border-radius: 10px;
+	padding: 10px;
+	margin-left: 20px;
+	top: 570px;
+	border: 2px solid #4174d9;
+}
+
+.sort-box a {
+	width: 110px;
+	height: 50px;
+	color: white;
+	background-color: #4174d9;
+	text-align: center;
+	margin-bottom: 5px; /* 버튼 아래쪽에 간격 추가 */
+	cursor: pointer;
+	text-decoration: none;
+	line-height: 50px; /* 버튼의 높이와 동일하게 설정 */
+	border: 2px solid #4174d9;
+	border-radius: 10px;
+}
+
+.sort-box a:hover {
+	background-color: white;
+	color: #4174d9;
+}
+
+/*중심 게시물*/
+
+
+.btn-src{
+	background-color: transparent;
+	border : none;	
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-src2{
+	background-color: transparent;
+	border : none;	
+}
+
+
+
+.swiper-container {
+	display: flex;
+	justify-content: space-around;
+	width: 1530px;
+	height: 440px;
+	border: 5px solid white;
+	border-radius: 7px;
+	box-shadow: 0 0 20px #b5b5b5;
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.swiper-slide {
+	text-align: center;
+	display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items: center; /* 위아래 기준 중앙정렬 */
+	justify-content: center; /* 좌우 기준 중앙정렬 */	
+}
+
+.swiper-slide img {
+	box-shadow: 0 0 5px #b5b5b5;
+	width: 380px;
+	height: 270px;
+	margin: 40px;
+}
+
+.swiper-slide ul{
+	list-style:none;
+}
+
+/* 현재 쪽번호 */
+#pList_paging{
+ text-align: center;
+ margin-bottom: 20px;
+}
+
+
+/* 후기작성 버튼 */
+.button_write {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	align-items: center; /* 버튼을 수평 방향으로 가운데 정렬 */
+	background-color: rgba(0, 0, 0, 0.5); /* 50%의 투명도 */
+	width: 110px;
+	background-color: transparent;
+	border-radius: 10px;
+	padding: 10px;
+	margin-left:1730px;
+	position: absolute;
+	top: 630px;
+	border: 2px solid #4174d9;
+}
+
+.button2 {
+	width: 110px;
+	height: 50px;
+	color: white;
+	background-color: #4174d9;
+	text-align: center;
+	margin-bottom: 5px; /* 버튼 아래쪽에 간격 추가 */
+	cursor: pointer;
+	text-decoration: none;
+	line-height: 50px; /* 버튼의 높이와 동일하게 설정 */
+	border: 2px solid #4174d9;
+	border-radius: 10px;
+}
+
+.button2:hover {
+	background-color: white;
+	color: #4174d9;
+}

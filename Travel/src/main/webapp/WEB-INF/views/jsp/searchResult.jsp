@@ -15,19 +15,24 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta name="_csrf_header" content="${_csrf.headerName}">
+<meta name="_csrf" content="${_csrf.token}">
 </head>
 
 <body>
 <jsp:include page="../include/header.jsp" />
-
+<div>현재 서울 여행객 ${seoulGo}</div> <div id="seoul"></div>
+<div>현재 부산 여행객 ${busanGo}</div> 
+<div>현재 도쿄 여행객 ${tokyoGo}</div>
 <div id="map"></div>
 
 
-<!-- 서울 부산 도쿄 위도 경도 지정해서 구글이랑 연동해서 크기 지정하면 될듯???? 이곳은 시크릿 키 자리-->
+<!--이곳은 시크릿 키 자리-->
 	
 	<script 
 	    src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous">
 	</script>
 	<script src="../js/homepageMap.js"></script>
+	<script src="/js/searchResult.js"></script>	
 </body>
 </html>

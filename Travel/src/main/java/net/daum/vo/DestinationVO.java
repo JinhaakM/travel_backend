@@ -21,7 +21,7 @@ import lombok.ToString;
 @Entity //엔티티빈
 
 @Table(name="destination") //destination 테이블 생성
-@EqualsAndHashCode(of={"plan", "city"})
+@EqualsAndHashCode(of="plan")
 //equals(), hashCode(), canEqual() 메서드 자동생성
 public class DestinationVO {
 	@Id
@@ -36,7 +36,12 @@ public class DestinationVO {
 	@JoinColumn(name= "plan_no", referencedColumnName= "plan_no")
 	private PlanVO plan;
 	
-	@ManyToOne(fetch= FetchType.LAZY)
-	@JoinColumn(name= "city_code", referencedColumnName= "city_code")
-	private CityVO city;
+	@Column(name= "place_name", nullable= false)
+	private String placeName;
+	
+	@Column(name= "place_latitude", nullable= false)
+	private double placeLatitude;
+	
+	@Column(name= "place_longitude", nullable= false)
+	private double placeLongitude;
 }

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const thirdBtn = document.querySelector('.third_btn');
     
     const countryMain= document.querySelector('.country_main');
-    const Date= document.querySelector('.c_container');
+    const dateContainer= document.querySelector('.c_container');
     const cityMain= document.querySelector('.city_main');
 		
 // 현재 URL 가져오기
@@ -27,7 +27,7 @@ initdefaultMap();
 
     // main과 관련된 테이블 내용 수정
    countryMain.innerHTML= "<tr><th>선택된 국가가 없습니다.</th></tr>"
-   Date.innerHTML="<div>날짜를 선택할 수 없습니다.</div>"
+   dateContainer.innerHTML="<div>날짜를 선택할 수 없습니다.</div>"
    cityMain.innerHTML= "<tr><th>도시를 선택할 수 없습니다.</th></tr>"
    
 // 각 버튼에 클릭 이벤트 리스너를 추가
@@ -45,7 +45,7 @@ initdefaultMap();
         firstBtn.classList.remove('selected');
         secondBtn.classList.add('selected');
         thirdBtn.classList.remove('selected');
-        Date.style.display= 'flex';
+        dateContainer.style.display= 'flex';
 
     });
 
@@ -59,16 +59,6 @@ initdefaultMap();
 }else {// url에 main이 포함되어있는지 확인하는 if()
        // main이 포함되어 있지 않은 경우 실행
         // 지도 초기화
-var marker
-var map
-function initMap() {
-    // 지도의 중심 좌표를 설정
-    var myLatLng = {lat: latitudes[0], lng: longitudes[0]};
-    // 지도 생성
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: myLatLng,
-        zoom: 10 // 줌 레벨을 조정할 수 있습니다.
-    });
 
 var openModalBtn= document.getElementById('createPlan');
     var modal= document.querySelector('.t_modal');
@@ -114,40 +104,39 @@ var openModalBtn= document.getElementById('createPlan');
 			}
 		});
 	});
+var markers= [];
+var map
+
+function initMap() {
+    // 지도의 중심 좌표를 설정
+    var myLatLng = {lat: latitudes[0], lng: longitudes[0]};
+    // 지도 생성
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: myLatLng,
+        zoom: 10 // 줌 레벨을 조정할 수 있습니다.
+    });
     // 각 버튼에 대한 클릭 이벤트 리스너를 추가합니다.
     const selectCityButtons= document.querySelectorAll('.select_city');
     selectCityButtons.forEach(function(button) {
 		button.addEventListener('click', function(){
 			this.classList.toggle('selected');
-			const cityName= this.getAttribute('data-cityName');
 			const latitude = parseFloat(this.dataset.latitude);
             const longitude = parseFloat(this.dataset.longitude);
-            const cityCode= this.getAttribute('data-cityCode');
-            // 현재 클릭한 버튼과 연결된 마커를 추적하기 위한 변수
             
 			// 마커를 표시할 위치 생성
 			var cityLatLng = {lat: latitude, lng: longitude};
-			if(marker){
-				marker.setPosition(cityLatLng);
-			}else {
-				marker= new google.maps.Marker({
-					position: cityLatLng,
-					map: map,
-					title: 'Selected City'
-				});
-			}
         // 선택된 마커로 지도 이동
         map.setCenter(cityLatLng);
-        map.setZoom(10); // 선택된 마커에 맞게 줌 레벨 조정
+        map.setZoom(12); // 선택된 마커에 맞게 줌 레벨 조정
 
         });
 	});
     
- const initAutocomplete = () => {
+ const initAutoComplete = () => {
             const input = document.getElementById("placeSearch");
             const options = {
-                componentRestrictions: { country: "nationalCode" }, // Example: Restrict to United States
-                fields: ["address_components", "geometry"],
+                componentRestrictions: { country: nationalCode },
+                fields: ["address_components", "geometry", "name"],
             };
 
             const autocomplete = new google.maps.places.Autocomplete(input, options);
@@ -161,19 +150,65 @@ var openModalBtn= document.getElementById('createPlan');
 
                 const lat = place.geometry.location.lat();
                 const lng = place.geometry.location.lng();
-                if(marker){
-					marker.setPosition({lat, lng});
-				}else{
-					marker= new google.maps.Marker({
-                    position: { lat, lng },
-                    map: map,
-                    title: 'Selected Place'						
-					});
-				}
+				const placeName= place.name;
+				// form태그 부모 요소 선택
+				const form= document.getElementById('travelForm');
+				
+				// hidden요소 생성 및 설정
+				const latInput= document.createElement('input');
+				latInput.type= 'hidden';
+				latInput.name= 'placeLatitude[]';
+				latInput.value= lat;
+				form.appendChild(latInput);// form에 추가
+				
+				const lngInput= document.createElement('input');
+				lngInput.type= 'hidden';
+				lngInput.name= 'placeLongitude[]';
+				lngInput.value= lng;
+				form.appendChild(lngInput);
+				
+				const placeNameInput= document.createElement('input');
+				placeNameInput.type= 'hidden';
+				placeNameInput.name= 'placeName[]';
+				placeNameInput.value= placeName;
+				form.appendChild(placeNameInput);
+				
+                addMarker({lat: lat, lng: lng});
                 map.setCenter({ lat, lng });
+                
+                input.value= '';
             });
-        };
-        initAutocomplete();
+        };// initAutoComplete()
+
+function addMarker(position){
+	var newMarker= new google.maps.Marker({
+		position: position,
+		map: map,
+		title: 'selected Place',
+		icon:{
+			url: '../images/map-marker.png'
+		}
+	});
+	// 마커 클릭 이벤트로 마커 삭제 기능추가
+	newMarker.addListener('click', function(){
+		removeMarker(newMarker);// 클릭한 마커 삭제
+	});// newMarker()
+	
+	markers.push(newMarker);// 배열에 마커 추가하기
+    map.setCenter(position);// 지도 이동
+    
+function removeMarker(markerRemove){
+	// markers 배열에서 클릭한 마커 찾기
+	markers= markers.filter(function(marker){
+		if(marker === markerRemove){
+			marker.setMap(null);// 지도에서 마커 제거
+			return false;// 배열에서도 마커 제거
+		}// if
+		return true;// 제거한 마커외 다른 마커 유지
+	});// markers 
+}// removeMarker()
+}// addMarker()
+        initAutoComplete();
 }// initMap();
 
 initMap();
@@ -185,7 +220,7 @@ initMap();
             secondBtn.classList.remove('selected');
             thirdBtn.classList.remove('selected');
             countryMain.style.display = 'flex';
-            Date.style.display = 'none';
+            dateContainer.style.display = 'none';
             cityMain.style.display = 'none';
 
         });
@@ -197,7 +232,7 @@ initMap();
             secondBtn.classList.add('selected');
             thirdBtn.classList.remove('selected');
             countryMain.style.display = 'none';
-            Date.style.display = 'flex';
+            dateContainer.style.display = 'flex';
             cityMain.style.display = 'none';
 
         });
@@ -207,11 +242,10 @@ initMap();
             secondBtn.classList.remove('selected');
             thirdBtn.classList.add('selected');
             countryMain.style.display = 'none';
-            Date.style.display = 'none';
+            dateContainer.style.display = 'none';
             cityMain.style.display = 'table';
 
         });
-
     }
 
 });

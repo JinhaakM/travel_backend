@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+/* heart.ui */
+#btn-like>i {
+    font-size: 25px;
+}
+
+.bi-heart-fill,.bi-heart {
+     color: red;
+}

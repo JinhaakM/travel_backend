@@ -147,19 +147,6 @@ body {
 	margin-left: 180px;
 }
 
-.tb_city{
-	display: none;
-    width: 340px;
-    position: fixed;
-    margin-top: 65px;
-    border-spacing: 13px;
-}
-
-.tb_city>th {
-  display: flex;
-  flex-direction: column;
-}
-
 .c_name,
 .plan_info {
 	color: black;
@@ -203,6 +190,7 @@ body {
 .city_list{
     padding: 0;
     list-style-type: none;
+    border-bottom: 1px solid black;
 }
 
 .city_list>li{
@@ -215,7 +203,7 @@ body {
 }
 
 .city_name{
-	width: 50px;
+	width: 80px;
 	height: 25px;
 }
 

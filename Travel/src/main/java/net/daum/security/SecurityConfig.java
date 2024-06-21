@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         		.ignoringAntMatchers("/webendpoint") // 웹훅 엔드포인트를 CSRF 보호 예외에 추가
         		.and()
             	.authorizeRequests()
-                .antMatchers("/Alert","/logout").access("hasRole('ADMIN') or hasRole('NOPAIDUSER') or hasRole('PAIDUSER')")
+                .antMatchers("/Alert","/logout","/addschedule").access("hasRole('ADMIN') or hasRole('NOPAIDUSER') or hasRole('PAIDUSER')")
                 //.antMatchers("/addschedule").hasRole("PAIDUSER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()  

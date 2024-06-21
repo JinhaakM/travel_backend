@@ -38,12 +38,14 @@ public class CityVO {
 	@Column(name= "longitude", nullable= false)
 	private double longitude;// 경도
 	
-	
 	@Column(name= "capital_city", nullable= true)
 	private String capitalCity;
 	
+	@Column(name= "city_image", nullable= true)
+	private String cityImage;// 도시 대표 이미지
+	
 	@JsonIgnore
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@ManyToOne (cascade=CascadeType.ALL, fetch= FetchType.LAZY)
 	@JoinColumn (name="national_code")
 	private NationalVO nationalCode;
 }

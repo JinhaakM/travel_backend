@@ -1,0 +1,60 @@
+/**
+ * 
+ */
+$(document).ready(function(){
+			wsOpen();
+			var checkw="ws://" + location.host + "/planGoTotal";
+			console.log(checkw);
+});
+
+	var ws;
+	
+	function wsOpen(){
+		
+		ws = new WebSocket("ws://" + location.host + "/planGoTotal");
+		wsEvt();
+	}
+		
+	function wsEvt() {
+		ws.onopen = function(data){
+			//소켓이 열리면 동작
+		}
+		
+		ws.onmessage = function(data) {
+			//메시지를 받으면 동작
+			var msg = data.data;
+			if(msg != null && msg.trim() != ''){
+				var d = JSON.parse(msg);
+				if(d.type == "getId"){
+					var si = d.sessionId != null ? d.sessionId : "";
+					if(si != ''){
+						$("#sessionId").val(si); 
+					}
+				}else if(d.type == "message") {
+    
+    					var currentTime = new Date();
+    					var year = currentTime.getFullYear();
+    					var month = currentTime.getMonth() + 1; 
+    					var date = currentTime.getDate();
+    					var hours = currentTime.getHours();
+    					var minutes = currentTime.getMinutes();
+    					var formattedTime = year + "-" + 
+                        (month < 10 ? '0' + month : month) + "-" + 
+                        (date < 10 ? '0' + date : date) + " " + 
+                        (hours < 10 ? '0' + hours : hours) + ":" + 
+                        (minutes < 10 ? '0' + minutes : minutes); 
+
+    if(d.sessionId == $("#sessionId").val()) {
+        $("#chating").append
+        ("<p class='me'>"+$("#member_id").val()+": " + d.msg + "<br> <span class='time'>" + formattedTime + "</span></p><br>");
+        
+    } else {
+        $("#chating").append
+        ("<p class='others'>관리자 : " + d.msg + "<br> <span class='time'>" + formattedTime + "</span></p><br>");
+    }
+}else{
+					console.warn("unknown type!")
+				}
+			}
+		}		
+	}

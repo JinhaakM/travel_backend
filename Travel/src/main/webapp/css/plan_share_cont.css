@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+/*plan_share_cont.jsp ui*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0; padding: 0;
+    background-image: url("../images/bluesky.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* 좋아요 하트 */
+.ttt{
+	margin-left: 800px;
+	text-align:left;
+	color : white;
+}
+
+.ttt h4{
+	text-align: right; margin-right: 450px;
+}
+
+#btn-like {
+	margin-top: -70px; margin-left:700px; 
+}
+
+#btn-like>i {
+    font-size: 60px;
+}
+
+.bi-heart-fill,.bi-heart {
+     color: pink;
+}
+
+
+.aBc_title{
+   width : 600px; height:500px;
+   text-align : center;
+   border:5px solid white;
+   justify-content: space-around;
+   background-color: transparent;
+   border-radius: 10px; color:#fff;  
+   margin-top: 30px; margin-bottom:100px; margin-left: 20px; 
+   overflow:scroll; /*콘텐츠 내용이 박스크기를 넘어가면 스크롤*/ 
+   overflow-x:hidden;
+   justify-content: space-between;
+   margin-left : 280px;
+   gap: 10px; padding: 10px;
+   float:left;
+}
+
+.reply{
+   width : 600px; height:500px;
+   border:5px solid white;
+   justify-content: space-around; background-color: transparent;
+   border-radius: 10px;  color:#fff;  
+   margin-top: 30px; margin-bottom:100px; margin-left: 990px; 
+   overflow:scroll; /*콘텐츠 내용이 박스크기를 넘어가면 스크롤*/ 
+   overflow-x:hidden;    
+}
+
+.reply_cont{
+	margin-left:80px;
+}
+
+#sreplyAddBtn {
+    margin-left: 10px;
+}    
+
+
+.btn-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around; /* 버튼 간격 동일하게 */
+	align-items: center; /* 버튼을 수평 방향으로 가운데 정렬 */
+	background-color: rgba(0, 0, 0, 0.5); /* 50%의 투명도 */
+	width: 110px;
+	background-color: transparent;
+	border-radius: 10px;
+	padding: 10px;
+	margin-left:50px;
+	position: absolute;
+	top: 630px;
+	border: 2px solid #4174d9;
+}
+
+.button-b {
+	width: 110px;
+	height: 50px;
+	color: white;
+	background-color: #4174d9;
+	text-align: center;
+	margin-bottom: 5px; /* 버튼 아래쪽에 간격 추가 */
+	cursor: pointer;
+	text-decoration: none;
+	line-height: 50px; /* 버튼의 높이와 동일하게 설정 */
+	border: 2px solid #4174d9;
+	border-radius: 10px;
+}
+
+.button-b:hover {
+	background-color: white;
+	color: #4174d9;
+}
+

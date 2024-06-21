@@ -22,8 +22,4 @@ var btn4 = document.getElementById("btn_4");
         window.location.assign("");
     });
 
-var thumbnailclick= document.selectQquerySelectorAll('.thumbnail');
-    thumbnailclick.addEventListener('click', function(){
-		
-	})
 });

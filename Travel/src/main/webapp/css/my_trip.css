@@ -2,8 +2,7 @@ body {
   	font-family: Arial, sans-serif;
 	margin: 0;
 	padding: 0;
-	/* background-image: url("../images/background_img_3.jpg"); */
-	background-color: black;
+	background-color: white;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -44,26 +43,4 @@ body {
 .button_box a:hover {
 	background-color: white;
 	color: #4174d9;
-}
-
-#btn_shcedule {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: rgba(0, 0, 0, 0.0);
-    color: #4174d9;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-top: -390px;
-    margin-left: 1600px;
-}
-
-#btn_shcedule:hover {
-    color: white;
-}
-
-.thumbnail{
-	width: auto;
-	height: auto;
 }

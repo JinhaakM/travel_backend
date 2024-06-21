@@ -1,0 +1,35 @@
+@charset "EUC-KR";
+
+#aMain_cont{
+    width:1000px; height:600px;
+    border:1px solid red; border-radius:15px;
+    margin:30px 500px 30px 500px;	
+}
+#aMain_cont .aMainCont_title{
+	font-size:16px; margin:230px 0px 0px 320px;
+}
+
+.clear{
+	clear:both; /*위쪽 div가 float속성이 적용되었을때 빈공간이
+	발생하면 아래쪽 div가 위로 올라가서 ui가 깨진다. 이것을 막아
+	준다.결국은 div간 잘못된 css적용을 막아줌 */
+}
+
+/* ShareSquare_write.jsp ui */
+#aBw_wrap{
+	width:700px; height:450px; border:1px solid skyblue;
+	border-radius:15px;
+	margin-left:auto; margin-right:auto;
+	margin-top:50px; box-shadow:10px 10px 10px #ccc;
+}
+#aBw_wrap .aBw_title{
+	margin:20px 100px 0px 200px; width:200px;
+	font-size:18px; background:pink; border-radius:15px;
+	text-align:center; padding:5px;
+}
+#aBw_t{
+	margin:20px 100px 0px 100px;
+}
+#aBw_menu{
+	margin:20px 0px 0px 250px;
+}

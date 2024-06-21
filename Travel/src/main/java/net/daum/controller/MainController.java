@@ -426,21 +426,20 @@ public class MainController {
 		
 		for(int i=0; i<p.size(); i++) {
 			int a= p.get(i).getCities().size();//한 계획 안에 들어 있는 여러 여행지
+			
 			for(int j=0; j<a; j++) {//그 여행지마다 갯수 지정.
 				if(p.get(i).getCities().get(j).getCityCode().equals("PUS")) busanGo++;
 				if(p.get(i).getCities().get(j).getCityCode().equals("SEL")) seoulGo++;
 				if(p.get(i).getCities().get(j).getCityCode().equals("TYO")) tokyoGo++;	
 				//System.out.println(p.get(i).getCities().get(j).getCityCode());
 			}
+			
 		}
 		
-		//System.out.println(busanGo);
-		//System.out.println(seoulGo);
-		//System.out.println(tokyoGo);
-		
 		ModelAndView search=new ModelAndView();
-		search.addObject("searchInput", searchInput);
-		
+		search.addObject("busanGo", busanGo);
+		search.addObject("seoulGo", seoulGo);
+		search.addObject("tokyoGo", tokyoGo);
 		search.setViewName("jsp/searchResult");
 		
 		return search;
@@ -458,12 +457,12 @@ public class MainController {
 //		home.setViewName("jsp/add_schedule");
 //		return home;
 //	}
-	@GetMapping("/Share_c")
-	public ModelAndView Share_c() {
-		ModelAndView home=new ModelAndView();
-		home.setViewName("jsp/share_c");
-		return home;
-	}
+//	@GetMapping("/Share_c")
+//	public ModelAndView Share_c() {
+//		ModelAndView home=new ModelAndView();
+//		home.setViewName("jsp/share_c");
+//		return home;
+//	}
 	//403접근 금지에러가 났을 때 
 	@GetMapping("/accessDenied") 
 	public void accessDenied() {}

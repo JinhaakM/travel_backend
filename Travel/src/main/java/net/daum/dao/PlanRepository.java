@@ -9,7 +9,7 @@ import net.daum.vo.PlanVO;
 
 public interface PlanRepository extends JpaRepository<PlanVO, Integer> {
 
-	@Query("select m from PlanVO m join fetch m.cities")
+	@Query("select m from PlanVO m")// join fetch m.cities
 	List<PlanVO> allUserPlan();
 
 }

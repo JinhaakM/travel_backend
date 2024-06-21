@@ -12,21 +12,21 @@
 	font-size:17px;
 }
 
-.calendar-container{
+.calendar_container{
     text-align: center;
     width: 300px;
     height: 320px;
     margin-top: 10px;
 }
 
-.calendar-header {
+.calendar_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
 
-.calendar-days {
+.calendar_days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   /* CSS의 Grid 레이아웃에서 사용되는 property 중 하나로, 
@@ -53,7 +53,7 @@
   color: #4174d9;
 }
 
-.calendar-dates {
+.calendar_dates {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }

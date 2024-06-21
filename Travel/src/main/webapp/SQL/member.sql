@@ -1,14 +1,10 @@
 select * from persistent_logins;
 
 
-select * from ;
+select * from member;
 delete member where member.member_id='duwnstj';
 
-select * from community_board;
-select * from CM_IMG;
-select * from cm_comment;
-select * from member;
-
+select * from plan;
 drop table member;
 drop table chat;
 drop table message;
@@ -37,6 +33,3 @@ WHERE TABLESPACE_NAME = 'TRAVEL';
 
 update member set member.role='ADMIN' where member_id='aodwlsgkr'; 
 --aodwlsgkr 아이디를 관리자로 지정함ㅁ.
-
-
-drop table COMMUNITY_BOARD;

@@ -1,0 +1,7 @@
+package net.daum.config;
+
+import org.springframework.web.socket.handler.TextWebSocketHandler;
+
+public class SocketHandler2 extends TextWebSocketHandler {
+
+}

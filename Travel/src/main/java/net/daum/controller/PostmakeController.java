@@ -55,12 +55,15 @@ public class PostmakeController {
 	public String post_make_ok(@RequestParam("uploadFile2") MultipartFile[] files, Community_boardVO b,
 			@AuthenticationPrincipal UserDetails userDetails,
 			HttpServletRequest request) {
+		
+		 
 
 		String uploadFolder = request.getServletContext().getRealPath("upload");
 		
 		String username=userDetails.getUsername();
 		MemberVO m= this.memberService.idCheck(username);
 		b.setMemberVO(m);
+		
 		
 		this.postService.insertboard(b); // 게시판에 들어갈 제목,내용 등 저장
 		
@@ -113,11 +116,21 @@ public class PostmakeController {
 	public ModelAndView community_board(
 	    @RequestParam(defaultValue = "1") int page,
 	    @RequestParam(required=false) String searchInput,
-	    @RequestParam(required=false) String searchType) throws Exception {
+	    @RequestParam(required=false) String searchType,
+	    @AuthenticationPrincipal UserDetails userDetails
+	    ) throws Exception {
 		
-		System.out.println(searchInput);
-	  
-	    int limit = 7; // Items per page
+		if (userDetails == null) {
+	        // 사용자 인증이 되어 있지 않은 경우 처리 (예: 로그인 페이지로 리다이렉트)
+		 	
+			ModelAndView m = new ModelAndView("jsp/login");
+	        return m;
+	    }
+
+		
+		String username=userDetails.getUsername();
+		MemberVO m= this.memberService.idCheck(username);
+		int limit = 7; // Items per page
 	    
 	    Page<Community_boardVO> postPage;
 	    
@@ -140,12 +153,18 @@ public class PostmakeController {
 	        postPage = postService.getAllPosts(pageable);
 	    } 
 	    
+	   
+	    Community_boardVO cb = new Community_boardVO();
+//	    postPage.getContent().get(0).getMemberVO().getMember_id()
+	    
 	    ModelAndView po = new ModelAndView();
 	    po.addObject("posts", postPage.getContent());
+	    
 	    po.addObject("totalPages", postPage.getTotalPages());
 	    po.addObject("currentPage", page);
 	    po.addObject("searchInput",searchInput);
 	    po.addObject("searchType",searchType);
+	    po.addObject("userid",username);
 	    po.setViewName("/jsp/main");
 	  
 	    return po;

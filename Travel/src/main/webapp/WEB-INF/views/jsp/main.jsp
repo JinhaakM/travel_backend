@@ -51,7 +51,7 @@
         <div class="instagram-post">
             <div class="post-content">
                 <img src="../images/profile.jpg" alt="프로필 사진">
-                <p class="user-id">아이디:</p>
+                <p class="user-id">아이디:"${p.memberVO.member_id}</p>
 
                 <!-- 수정 및 삭제 토글 버튼 -->
                 <button type="button" class="toggle-button">옵션</button>
