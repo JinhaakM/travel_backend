@@ -18,13 +18,12 @@ import net.daum.vo.MemberVO;
 @Getter
 public class TravleSecurityUser extends User {
 
-    private static final String ROLE_PREFIX = "ROLE_";//권한을 ROLE_ 로 하는 것이 관례화. hasRole() 앞부분에도 자동으로 설정되어 있음.
+    private static final String ROLE_PREFIX = "ROLE_";
     private MemberVO member;
     
     @Override
     public void eraseCredentials() {
         //  this.password = null; 
-    	
     	//	기본으로 위 코드가 되어 있기 때문에, 오버라이딩해서 지워주면 컨트롤러에서도 비밀번호를 받을 수 있음.
     	//	하지만 보안에 좋지 않으니 이렇게 사용하지 말것.
     }
@@ -33,7 +32,7 @@ public class TravleSecurityUser extends User {
         
         super(member.getMember_id(), member.getMember_pwd(), makeGrantedAuthority(member.getRole()));
         
-        HttpSession session = request.getSession(); // 세션 객체 생성
+        HttpSession session = request.getSession(); 
         session.setAttribute("id", member.getMember_id());
         session.setAttribute("name", member.getMember_name());        
         session.setAttribute("auth", ROLE_PREFIX + member.getRole());

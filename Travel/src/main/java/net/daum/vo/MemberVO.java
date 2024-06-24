@@ -36,7 +36,7 @@ public class MemberVO {
 	private String member_id;
 	
 	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	@JoinColumn(name="chat_no")//여기서 지정하는 것이 외래키 이름.
+	@JoinColumn(name="chat_no")
     private ChatVO chatVO;
 	
 	@OneToMany(mappedBy = "memberVO",cascade=CascadeType.ALL, fetch=FetchType.LAZY)

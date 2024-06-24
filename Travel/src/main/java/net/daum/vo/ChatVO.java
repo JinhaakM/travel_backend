@@ -35,7 +35,7 @@ import lombok.ToString;
 		initialValue = 1,
 		allocationSize = 1
 		)
-public class ChatVO {//유저별로 채팅방을 구분하기 위해 만든 테이블
+public class ChatVO {
 	
 	@Id
     @GeneratedValue(

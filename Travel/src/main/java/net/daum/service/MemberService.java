@@ -12,7 +12,6 @@ import net.daum.vo.MessageVO;
 public interface MemberService {
 
 	void insertMember(MemberVO m);
-
 	MemberVO loginCheck(String member_id);
 	MemberVO idCheck(String id);
 	MemberVO idAndMailCheck(String member_id, String mail_id, String mail_domain);

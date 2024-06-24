@@ -32,18 +32,5 @@ public class RememberKey implements Serializable {
     
 	@CreationTimestamp
     private Timestamp lastUsed;
-
-	
-	//@ToString을 쓰지 않았을 때 오버라이드 한다면
-	
-//    @Override
-//    public String toString() {
-//        return "RememberKey{" +
-//                "series='" + series + '\'' +
-//                ", username='" + username + '\'' +
-//                ", token='" + token + '\'' +
-//                ", lastUsed=" + lastUsed +
-//                '}';
-//    }
 }
 

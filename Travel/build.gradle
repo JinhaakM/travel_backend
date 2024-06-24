@@ -27,7 +27,6 @@ dependencies {//gradle 방식에서 의존성 주입부분이다.
 	//웹소켓!!! 채팅을 위해 새로 추가함
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	//json 데이터를 처리하기 위해
-	//implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
 	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -73,8 +72,6 @@ allprojects {
 		maven { url 'https://jitpack.io' }
 	}
 }
-
-
 
 }
 tasks.named('test') {

@@ -22,14 +22,12 @@ import net.daum.vo.ChatVO;
 import net.daum.vo.MessageVO;
 
 
-
 @RequestMapping("/admin/*")
 @Controller
 public class AdminController {
 
 	@Autowired
 	private MemberService memberService;
-	
 	
 	@GetMapping("/homepage")
 	public ModelAndView homepage() {
@@ -54,11 +52,9 @@ public class AdminController {
     public String showChat(@RequestParam("user") String user, Model model) {
 
 		long chatNumber=this.memberService.getChatNumber(user);
-		//유저의 채팅넘버
-
+		
 		List<MessageVO> allMessage=new ArrayList<>();
 		allMessage=this.memberService.getAllMessage(chatNumber);
-		//채팅방에 속하는 모든 메시지는 서버에서 가져오기 성공함.
 		Collections.sort(allMessage, new MessageComparator());
 		
         model.addAttribute("user", user);
@@ -67,8 +63,6 @@ public class AdminController {
         
         return "admin/admin_chat";
     }
-    
-	
 	
 	@PostMapping("/messageSend")
 	public ModelAndView messageSend(@RequestParam("chatNumber") String chatNo,
@@ -77,9 +71,6 @@ public class AdminController {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		
-//		System.out.println(chatNo);
-//		System.out.println(messageText);
 		
 		ModelAndView m=new ModelAndView();
 		int result=1;
@@ -94,9 +85,6 @@ public class AdminController {
 		
 		out.println(result);
 		
-		
 		return null;
 	}
-
-	
 }

@@ -9,8 +9,5 @@ import net.daum.vo.MemberVO;
 public interface ChatRepository extends JpaRepository<ChatVO, Long> {
 
 	@Query("SELECT c.chatNo FROM ChatVO c WHERE c.memberVO.member_id = ?1")
-    long findChatNumberByMemberId(String member_id);
-
-	
-	
+    long findChatNumberByMemberId(String member_id);	
 }

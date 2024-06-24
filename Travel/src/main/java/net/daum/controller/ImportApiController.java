@@ -28,17 +28,11 @@ public class ImportApiController {
     public ImportApiController(@Value("${iamport.api.key}") String apiKey, @Value("${iamport.api.secret}") String apiSecret) {
     	
     		    this.api = new IamportClient(apiKey, apiSecret);
-    			//System.out.println("API Key: " + apiKey);
-    			//System.out.println("API Secret: " + apiSecret);
     }
 
     @PostMapping("/webendpoint")
     @ResponseBody
     public String handleWebhook(@RequestBody MyPayment payload) {
-        // 웹훅 수신 처리-가능한지만
-    	// ngrok를 통해 통신한다.
-    	// 포트원이 보내는 형식 {"imp_uid":"imp_614505216799","merchant_uid":"IMPtz60b24qh0elxd3320p","status":"paid"}
-    	
     	
     	System.out.println(payload.getimp_uid());
     	System.out.println(payload.getmerchant_uid());
@@ -48,13 +42,11 @@ public class ImportApiController {
         return null;
     }
  
-    
-    // 결제 금액을 계산하여 반환하는 API
     @GetMapping("/getPaymentAmount")
     @ResponseBody
     public ResponseEntity<Map<String, Integer>> getPaymentAmount() {
         Map<String, Integer> response = new HashMap<>();
-        response.put("amount", 9900); // 결제 금액을 직접 계산하여 반환
+        response.put("amount", 9900); 
         return ResponseEntity.ok(response);
     }
 
@@ -64,8 +56,6 @@ public class ImportApiController {
             @PathVariable(value = "imp_uid") String imp_uid,
             @RequestParam("merchant_uid") String merchant_uid,
             @RequestParam("amount") int amount) throws IamportResponseException, IOException {
-
-        //System.out.println("Received amount from client: " + amount);
 
         IamportResponse<Payment> response = api.paymentByImpUid(imp_uid);
         
@@ -77,16 +67,12 @@ public class ImportApiController {
             return ResponseEntity.badRequest().body(errorResult);
         }
 
-        //System.out.println("Payment amount from Iamport: " + payment.getAmount().intValue());
-        //System.out.println("Payment merchant_uid from Iamport: " + payment.getMerchantUid());
-
         Map<String, String> result = new HashMap<>();
-        int expectedAmount = 9900; // 서버에서 직접 계산한 결제 금액
+        int expectedAmount = 9900; 
         if (payment.getAmount().intValue() == expectedAmount && payment.getMerchantUid().equals(merchant_uid)) {
             result.put("result", "success");
             return ResponseEntity.ok(result);
-        } else {
-            // 결제 금액 또는 merchant_uid가 일치하지 않는 경우 결제 취소
+        } else {  
             CancelData cancelData = new CancelData(imp_uid, true);
             api.cancelPaymentByImpUid(cancelData);
 

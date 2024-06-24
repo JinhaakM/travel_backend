@@ -28,19 +28,18 @@ import lombok.Setter;
 import lombok.ToString;
 import net.daum.config.MyEntityListener;
 
-@Setter //setter()메서드 자동생성
-@Getter //getter()메서드 자동생성
-@ToString //toString()메서드 자동생성
-@Entity //엔티티빈
-@SequenceGenerator( //오라클 시퀀스 생성기
-		  name="plan_seq" , //시퀀스 제너레이터 이름
-		  sequenceName="plan_no_seq",//시퀀스 이름
-		  initialValue= 1 , //시퀀스 시작값
-		  allocationSize = 1 //1씩 증가
+@Setter 
+@Getter 
+@ToString 
+@Entity 
+@SequenceGenerator( 
+		  name="plan_seq" , 
+		  sequenceName="plan_no_seq",
+		  initialValue= 1 , 
+		  allocationSize = 1 
 		)
-@Table(name="plan") //member 테이블 생성
+@Table(name="plan") 
 @EqualsAndHashCode(of="planNo")
-//equals(), hashCode(), canEqual() 메서드 자동생성
 @EntityListeners(MyEntityListener.class)
 public class PlanVO {
 	
@@ -50,17 +49,17 @@ public class PlanVO {
 			generator= "plan_seq"
 			)
 	@Column(name= "plan_no", nullable = false)
-	private int planNo;// 일정번호
+	private int planNo;
 	
 	@Column(name = "departure_date", nullable = false)
-	private Date departureDate;// 출발일
+	private Date departureDate;
 	
 	@Column(name= "arrival_date", nullable = false)
-	private Date arrivalDate;// 도착일
+	private Date arrivalDate;
 
-	@CreationTimestamp// 하이버네이트로 등록시점 날짜값 생성
+	@CreationTimestamp
 	@Column(name= "plan_date", nullable = false)
-    private Timestamp planDate;// 일정생성날짜
+    private Timestamp planDate;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "member_id")

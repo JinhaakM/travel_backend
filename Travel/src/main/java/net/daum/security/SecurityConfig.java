@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -34,18 +33,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
     public CustomAuthenticationFailureHandler customAuthenticationFailureHandler() {
         return new CustomAuthenticationFailureHandler();
-    }//로그인 실패 경우를 처리하는 핸들러
+    }
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-        	//.csrf().disable()
         		.csrf()
-        		.ignoringAntMatchers("/webendpoint") // 웹훅 엔드포인트를 CSRF 보호 예외에 추가
+        		.ignoringAntMatchers("/webendpoint") 
         		.and()
             	.authorizeRequests()
                 .antMatchers("/Alert","/logout","/addschedule").access("hasRole('ADMIN') or hasRole('NOPAIDUSER') or hasRole('PAIDUSER')")
-                //.antMatchers("/addschedule").hasRole("PAIDUSER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .and()  
             .formLogin()
@@ -65,10 +62,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll();
         
         http.exceptionHandling().accessDeniedPage("/accessDenied");
-        //403 접근 금지 에러가 났을때 실행
+
         String rememberMeKey = UUID.randomUUID().toString();
-        //복잡한 키를 생성
-        
         http.rememberMe().key(rememberMeKey).userDetailsService(travleUserService)
 		.tokenRepository(getJDBCRepository())
 		.tokenValiditySeconds(60*60*24);
