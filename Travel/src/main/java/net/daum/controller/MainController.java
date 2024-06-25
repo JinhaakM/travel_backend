@@ -42,7 +42,7 @@ import net.daum.vo.PlanVO;
 
 @Controller
 public class MainController {
-
+//test
 	@Autowired
 	private MemberService memberService;
 	@Autowired
@@ -118,7 +118,7 @@ public class MainController {
 	}
 	
 	
-	//비밀번호를 찾아봅니다.
+	//비밀번호를 찾아봅니다...
 	@GetMapping("/Find_Password")
 	public ModelAndView Find_Password() {
 		
@@ -127,7 +127,7 @@ public class MainController {
 	}
 	
 	
-	//DB로 가서 해당 아이디와 해당 이메일 주소가 있는지, 동일한지 검사합니다.
+	//DB로 가서 해당 아이디와 해당 이메일 주소가 있는지, 동일한지 검사합니다...
 	@PostMapping("/Find_Password_ok")
 	public String Find_Password_ok(String member_id, String mail, HttpServletResponse response)
 		throws Exception{
@@ -135,11 +135,12 @@ public class MainController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
 		
+		//입력값으로 받은 mail을 @를 기준으로 분리합니다.
 		String[] mails=mail.split("@");
 		String mail_id=mails[0];
 		String mail_domain=mails[1];
 		
-		//셋 다 동일한 유저가 있으면 그 객체를 가져오기
+		//셋 다 동일한 유저가 있으면 그 객체를 가져옵니다...
 		MemberVO m=this.memberService.idAndMailCheck(member_id, mail_id, mail_domain);
 				
 		if(m == null) {
@@ -153,6 +154,7 @@ public class MainController {
 		    String ran_pwd = Integer.toString(pwd_random);
 		    m.setMember_pwd(passwordEncoder.encode(ran_pwd));
 		    
+    
 		    this.memberService.updatePwd(m);
 		    
 		    out.println("<script>");
@@ -160,6 +162,7 @@ public class MainController {
 		    out.println("window.location.href = '/login';");
 		    out.println("</script>");
 		}		
+		
 		return null;
 	}
 		
@@ -190,7 +193,7 @@ public class MainController {
 	public ModelAndView Join_Clear(MemberVO m) {
 		
 		ChatVO c=new ChatVO();
-		m.setChatVO(c);
+		m.setChatVO(c);//회원가입할 때 채팅VO도 같이 집어넣어서 저장한다. 관리자와 채팅할 채팅방을 같이 개설하기 위해서
 		m.setMember_pwd(passwordEncoder.encode(m.getMember_pwd()));
 		this.memberService.insertMember(m);
 		
@@ -307,7 +310,11 @@ public class MainController {
 
 				List<MessageVO> allMessage=new ArrayList<>();
 				allMessage=this.memberService.getAllMessage(chatNumber);
-				Collections.sort(allMessage, new MessageComparator());				
+				Collections.sort(allMessage, new MessageComparator());
+				//채팅방에 속하는 모든 메시지는 서버에서 가져오기 성공함.
+				//System.out.println(allMessage.get(4).getMessageText()); 
+				//메시지 하나를 출력하고 싶을 때.
+					
 				
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("chatNumber",chatNumber);
@@ -326,6 +333,9 @@ public class MainController {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
+		
+//		System.out.println(chatNo);
+//		System.out.println(messageText);
 		
 		ModelAndView m=new ModelAndView();
 		int result=1;
@@ -378,7 +388,15 @@ public class MainController {
 		MemberVO m= this.memberService.idCheck(username);
 		m.setRole("PAIDUSER");
 		this.memberService.update_Edit(m);
-
+		
+//		  HttpSession session = request.getSession(); 
+// 		  세션 객체 생성
+//        session.setAttribute("id", m.getMember_id());
+//        session.setAttribute("name", m.getMember_name());        
+//        session.setAttribute("auth", "ROLE_" + m.getRole());
+//        위 방법으론 권한 업데이트가 되지 않음.
+		
+        //System.out.println(m.getMember_id()+m.getMember_name()+m.getRole());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
         List<GrantedAuthority> updatedAuthorities = new ArrayList<>(auth.getAuthorities());
@@ -386,6 +404,7 @@ public class MainController {
         updatedAuthorities.add(new SimpleGrantedAuthority("ROLE_PAIDUSER"));
         Authentication newAuth = new UsernamePasswordAuthenticationToken(auth.getPrincipal(), auth.getCredentials(), updatedAuthorities);
         SecurityContextHolder.getContext().setAuthentication(newAuth);
+        //결제 시 권한을 업데이트해서 접근할 수 없는 페이지에 접근을 가능하게 해야해서, 현재 접속중인 유저 정보를 업데이트.
         
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
@@ -398,20 +417,21 @@ public class MainController {
 	@GetMapping("/homepageSearch")
 	public ModelAndView homepageSearch(String searchInput) {
 		
-		List<PlanVO> p=new ArrayList<>();
+		List<PlanVO> p=new ArrayList();
 		p=this.planService.allUserPlan();
 		int busanGo=0;
-		int seoulGo=0;
+		int seoulGo=0;//웹소켓을 통해 실시간으로 변경되는 값.
 		int tokyoGo=0;
 		
 		for(int i=0; i<p.size(); i++) {
-			int a= p.get(i).getCities().size();//한 계획 안에 들어 있는 여러 여행지
+			int a= p.get(i).getCities().size();
 			
-			for(int j=0; j<a; j++) {//그 여행지마다 갯수 지정.
+			for(int j=0; j<a; j++) {
 				if(p.get(i).getCities().get(j).getCityCode().equals("PUS")) busanGo++;
 				if(p.get(i).getCities().get(j).getCityCode().equals("SEL")) seoulGo++;
 				if(p.get(i).getCities().get(j).getCityCode().equals("TYO")) tokyoGo++;	
-			}	
+			}
+			
 		}
 		
 		ModelAndView search=new ModelAndView();
@@ -422,7 +442,27 @@ public class MainController {
 		
 		return search;
 	}
+	//병합 전 시큐리티 접근 가능 여부 파악
+//	@GetMapping("/Main")
+//	public ModelAndView Main() {
+//		ModelAndView home=new ModelAndView();
+//		home.setViewName("jsp/main");
+//		return home;
+//	}
+//	@GetMapping("/Add_schedule")
+//	public ModelAndView Add_schedule() {
+//		ModelAndView home=new ModelAndView();
+//		home.setViewName("jsp/add_schedule");
+//		return home;
+//	}
+//	@GetMapping("/Share_c")
+//	public ModelAndView Share_c() {
+//		ModelAndView home=new ModelAndView();
+//		home.setViewName("jsp/share_c");
+//		return home;
+//	}
 	//403접근 금지에러가 났을 때 
 	@GetMapping("/accessDenied") 
-	public void accessDenied() {}	
+	public void accessDenied() {}
+	
 }

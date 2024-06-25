@@ -28,7 +28,7 @@
 
 
 <!--이곳은 시크릿 키 자리-->
-	
+<script src="https://maps.googleapis.com/maps/api/js?key=&libraries=places"></script>
 	<script 
 	    src="https://kit.fontawesome.com/9d75e77952.js"crossorigin="anonymous">
 	</script>
