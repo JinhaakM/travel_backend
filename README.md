@@ -30,7 +30,8 @@
 <br><br>
 
 <h2>실시간으로 계획을 저장한 유저의 수를 업데이트해서 보여줄 수 있다</h2>
-![웹소켓을 통한 실시간 정보 전달](https://github.com/JinhaakM/travel_backend/assets/167280525/fef60f24-066e-46db-b9be-d87b44c645e6)
+![웹소켓을 통한 실시간 정보 전달](https://github.com/JinhaakM/travel_backend/assets/167280525/542255f8-e0a4-4f34-bf3d-7a760639ff4e)
+
 
 <br><br>
 
