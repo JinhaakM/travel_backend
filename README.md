@@ -23,6 +23,17 @@
 
 <br><br>
 
+<h2>성공적인 결제 후 유저의 권한을 바꿀 수 있다</h2>
+
+![결제](https://github.com/JinhaakM/travel_backend/assets/167280525/81c85a42-e349-44d5-a124-17bec3c82e24)
+
+<br><br>
+
+<h2>실시간으로 계획을 저장한 유저의 수를 업데이트해서 보여줄 수 있다</h2>
+![웹소켓을 통한 실시간 정보 전달](https://github.com/JinhaakM/travel_backend/assets/167280525/fef60f24-066e-46db-b9be-d87b44c645e6)
+
+<br><br>
+
 <hr>
 #2024/06/11 <br> 포트원을 이용한 카카오페이 결제 후, NOPAIDUSER의 권한을 PAIDUSER로 변경하도록 설정. 그에 따라 원래는 접근 불가능했던 페이지에 접근 가능.
 <br>
